@@ -3,9 +3,6 @@ import Carousel from "react-bootstrap/Carousel";
 import genga from "../genga.png";
 import pieroSara from "../Pierosara.png";
 import grotte from "../grotte.png";
-import Foro from "../ForoOcchialoni.png";
-import tempio from "../tempio.png";
-import abbazia from "../abbazia.png";
 import logo from "../logoColleponi.png";
 import VideoSfondo from "../VideoSfondo.mp4";
 import { Button, Container } from "react-bootstrap";
@@ -100,7 +97,7 @@ const HomePage = () => {
         <Carousel.Item>
           <img className="d-block w-100" src={pieroSara} alt="second slide" />
           <Carousel.Caption>
-            <Button>
+            <Button className="text-decoration-none">
               <h3>Prima diapositiva</h3>
             </Button>
             <p>Descrizione della seconda diapositiva.</p>

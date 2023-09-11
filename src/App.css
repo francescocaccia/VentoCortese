@@ -58,24 +58,22 @@ h2 {
   border-radius: 10px; /* Arrotonda gli angoli delle didascalie */
 }
 
-.carousel .carousel-caption h3,
-.carousel .carousel-caption p {
-  color: #fff; /* Cambia il colore del testo delle didascalie in bianco */
-}
-
 /* Aggiungi uno stile personalizzato al bottone nel Carousel */
 .carousel-caption button {
   background-color: transparent; /* Imposta il colore di sfondo trasparente */
   border: 2px solid white; /* Aggiunge un bordo bianco di 2 pixel */
   border-radius: 0; /* Rende il bordo quadrato */
-  color: white; /* Imposta il colore del testo su bianco */
   padding: 10px 20px; /* Aggiunge spazio interno al bottone */
   cursor: pointer; /* Cambia il cursore quando si passa sopra al bottone */
 }
 
 .carousel-caption button:hover {
-  background-color: white; /* Cambia il colore di sfondo al passaggio del mouse */
-  color: black !important; /* Cambia il colore del testo al passaggio del mouse */
+  background-color: rgb(
+    207,
+    185,
+    160
+  ); /* Cambia il colore di sfondo al passaggio del mouse */
+  color: black;
 }
 
 /* Il resto del tuo CSS... */
