@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+p,
+h1,
+h3,
+h2 {
+  font-family: "Indie Flower", cursive;
+}
+.navbar {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Questo rende la navbar semi-trasparente */
+}
+
+.navbar__links {
+  display: flex;
+}
+
+.navbar__links a {
+  margin-right: 20px; /* Aggiunge uno spazio a destra tra i link */
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar__links a:hover {
+  color: rgb(
+    207,
+    185,
+    160
+  ); /* Sostituisci "your_color" con il colore desiderato */
+}
+
+/*caroselli*/
+
+.carousel {
+  width: 100%; /* Riduci la larghezza del carosello alla metà */
+  margin: auto; /* Centra il carosello */
+}
+
+.carousel .carousel-item {
+  height: 500px; /* Imposta l'altezza del carosello */
+}
+
+.carousel .carousel-item img {
+  height: 100%; /* Fai in modo che le immagini occupino tutto lo spazio disponibile */
+  object-fit: cover; /* Mantieni le proporzioni delle immagini mentre le ridimensioni */
+}
+
+.carousel .carousel-caption {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Aggiungi uno sfondo semi-trasparente alle didascalie */
+  border-radius: 10px; /* Arrotonda gli angoli delle didascalie */
+}
+
+.carousel .carousel-caption h3,
+.carousel .carousel-caption p {
+  color: #fff; /* Cambia il colore del testo delle didascalie in bianco */
+}
+
+/* Aggiungi uno stile personalizzato al bottone nel Carousel */
+.carousel-caption button {
+  background-color: transparent; /* Imposta il colore di sfondo trasparente */
+  border: 2px solid white; /* Aggiunge un bordo bianco di 2 pixel */
+  border-radius: 0; /* Rende il bordo quadrato */
+  color: white; /* Imposta il colore del testo su bianco */
+  padding: 10px 20px; /* Aggiunge spazio interno al bottone */
+  cursor: pointer; /* Cambia il cursore quando si passa sopra al bottone */
+}
+
+.carousel-caption button:hover {
+  background-color: white; /* Cambia il colore di sfondo al passaggio del mouse */
+  color: black !important; /* Cambia il colore del testo al passaggio del mouse */
+}
+
+/* Il resto del tuo CSS... */
+
+/* CSS per le card delle stanze */
+.room-card {
+  flex: 1; /* Fai in modo che le card occupino la stessa larghezza all'interno del container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Aggiunge dello spazio tra le card */
+  padding: 10px;
+  border: 1px solid #ccc; /* Aggiungi un bordo per separare le card */
+  border-radius: 10px;
+}
+
+/* Aggiungi il CSS per il carosello all'interno delle card, assicurandoti che si adatti alle dimensioni della card */
+/* CSS per le immagini nei caroselli */
+.room-card .carousel .carousel-item img {
+  max-height: 200px; /* Imposta un'altezza massima per le immagini */
+  width: auto; /* Lascia che la larghezza delle immagini si adatti automaticamente per mantenere le proporzioni */
+}
+
+/* CSS per i caroselli */
+.room-card .carousel {
+  width: 100%; /* Larghezza del carosello al 100% della card */
+  max-height: 300px; /* Imposta un'altezza massima per il carosello */
+  overflow: hidden; /* Nascondi l'overflow del carosello in caso di immagini più grandi */
+}
+
+.room-card .carousel .carousel-item img {
+  max-height: 200px; /* Imposta un'altezza massima per le immagini per evitare sforbiciature */
+}
+
+/* Il resto del tuo CSS... */
+
+/*prova di background image*/
+
+.background {
+  position: relative;
+  height: 100vh;
+}
+
+.background__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-family: "Indie Flower", cursive;
+  font-size: 4vw;
+}
+
+/* roooooommmmmmmmmm */
+
+.price-list {
+  background-color: rgb(207, 185, 160);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.price-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.price-item h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.price-item p {
+  font-size: 16px;
+}
+
+/* footerrrr */
+.footer {
+  background-color: rgb(207, 185, 160);
+}
+
+/* prova per caroselli room */
+
+.carousel-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonne per i caroselli */
+  gap: 20px; /* Spazio tra i caroselli */
+}
+
+.carousel-item {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease; /* Animazione di trasformazione */
+}
+
+/* Stile specifico per ciascun carosello */
+.carousel-item:nth-child(1) {
+  transform: rotate(-5deg);
+}
+
+.carousel-item:nth-child(2) {
+  transform: rotate(5deg);
+}
+
+.carousel-item:nth-child(3) {
+  transform: rotate(-3deg);
+}
+
+/* Aggiungi ulteriori stili per personalizzare l'aspetto dei caroselli */
