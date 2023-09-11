@@ -194,6 +194,7 @@ h2 {
 
 /* Aggiungi ulteriori stili per personalizzare l'aspetto dei caroselli */
 
+/* Card */
 .card {
   transition: transform 0.3s;
 }
@@ -202,7 +203,6 @@ h2 {
   transform: scale(1.1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
 }
-
 .card-img {
   height: 130px;
   object-fit: cover;

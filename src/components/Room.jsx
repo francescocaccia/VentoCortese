@@ -2,11 +2,14 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
-
+import logo from "../logoColleponi.png";
 const Room = () => {
   return (
     <>
-      <h3 className="text-center mt-5">Dimore Cortesi</h3>
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        <img src={logo} alt="logo" width={110} height={110} />
+        <h3 className="text-center mb-5">Le nostre Dimore Cortesi...</h3>
+      </div>
       <Container>
         <div className="room-container">
           <div className="room-card">

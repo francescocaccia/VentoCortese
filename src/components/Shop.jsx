@@ -54,59 +54,115 @@ const restaurants = [
 
 const Shop = () => {
   return (
-    <Container>
-      <h2 className="text-center my-4">Abbinamenti piccanti...</h2>
-      <Row>
-        <Col md={5}>
-          <Image
-            src="https://blog.giallozafferano.it/chicchecris/wp-content/uploads/2019/08/Pikkanapa2-720x579.jpg"
-            fluid
-            style={{ width: "100%", height: "200px", objectFit: "cover" }}
-          />
-        </Col>
-        <Col md={2}>
-          <Image src={logo} fluid />
-        </Col>
-        <Col md={5}>
-          <Image
-            src="https://blog.giallozafferano.it/chicchecris/wp-content/uploads/2019/08/Pikkanapa-720x284.jpg"
-            fluid
-            style={{ width: "100%", height: "200px", objectFit: "cover" }}
-          />
-        </Col>
-      </Row>
-      <p className="my-4 text-center fw-semibold">
-        Benvenuti nella sezione dedicata agli amanti del peperoncino! Qui
-        troverai informazioni sui ristoranti che offrono piatti piccanti,
-        suggerimenti su come ordinare cibo piccante e curiosità sui diversi tipi
-        di peperoncino e come vengono utilizzati nella cucina.
-      </p>
-      <p className="text-center">
-        Il peperoncino è un ingrediente versatile che può aggiungere sapore e
-        piccantezza a molti piatti. Che tu preferisca il calore delicato del
-        peperoncino jalapeño o il fuoco intenso del habanero, c'è un peperoncino
-        adatto a ogni palato. E con così tanti ristoranti che offrono opzioni
-        piccanti, non c'è mai stato un momento migliore per essere un amante del
-        peperoncino!
-      </p>
-      <Row className="my-4">
-        {restaurants.map((restaurant, index) => (
-          <Col md={3} key={index}>
-            <Card className="mb-3">
-              <Card.Img
-                variant="top"
-                src={restaurant.imageUrl}
-                className="card-img"
-              />
-              <Card.Body>
-                <Card.Title>{restaurant.name}</Card.Title>
-                <Card.Text>{restaurant.location}</Card.Text>
-              </Card.Body>
-            </Card>
+    <>
+      <Container>
+        <h2 className="text-center my-4">Il nostro shop...</h2>
+        <h3 className="mb-3">Il nostro Miele...</h3>
+        <Row>
+          <Col md={5}>
+            <Image
+              src="https://www.my-personaltrainer.it/2017/12/22/miele-di-acacia-orig.jpeg"
+              fluid
+              style={{ width: "100%", height: "200px", objectFit: "cover" }}
+            />
           </Col>
-        ))}
-      </Row>
-    </Container>
+          <Col md={2}>
+            <Image src={logo} fluid />
+          </Col>
+          <Col md={5}>
+            <Image
+              src="https://www.melarossa.it/wp-content/uploads/2022/12/miele-d-acacia-che-cos-e-proprieta-benefic-calorie-usi-terapeutici-e-in-cucina.jpg"
+              fluid
+              style={{ width: "100%", height: "200px", objectFit: "cover" }}
+            />
+          </Col>
+        </Row>
+        <p className="my-4 text-center fw-semibold">
+          Benvenuti nella sezione dedicata agli amanti del peperoncino! Qui
+          troverai informazioni sui ristoranti che offrono piatti piccanti,
+          suggerimenti su come ordinare cibo piccante e curiosità sui diversi
+          tipi di peperoncino e come vengono utilizzati nella cucina.
+        </p>
+        <p className="text-center">
+          Il peperoncino è un ingrediente versatile che può aggiungere sapore e
+          piccantezza a molti piatti. Che tu preferisca il calore delicato del
+          peperoncino jalapeño o il fuoco intenso del habanero, c'è un
+          peperoncino adatto a ogni palato. E con così tanti ristoranti che
+          offrono opzioni piccanti, non c'è mai stato un momento migliore per
+          essere un amante del peperoncino!
+        </p>
+        <Row className="my-4">
+          {restaurants.map((restaurant, index) => (
+            <Col md={3} key={index}>
+              <Card className="mb-3">
+                <Card.Img
+                  variant="top"
+                  src={restaurant.imageUrl}
+                  className="card-img"
+                />
+                <Card.Body>
+                  <Card.Title>{restaurant.name}</Card.Title>
+                  <Card.Text>{restaurant.location}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <Container>
+        <h3 className="mb-3">Il nostro Salumi...</h3>
+        <Row>
+          <Col md={5}>
+            <Image
+              src="https://salumificiodigenga.it/wp-content/uploads/2022/09/LE_TRADIZIONI.jpg"
+              fluid
+              style={{ width: "100%", height: "200px", objectFit: "cover" }}
+            />
+          </Col>
+          <Col md={2}>
+            <Image src={logo} fluid />
+          </Col>
+          <Col md={5}>
+            <Image
+              src="https://www.mark-up.it/wp-content/uploads/sites/3/2021/06/Famiglia_prodotti-696x464.jpg"
+              fluid
+              style={{ width: "100%", height: "200px", objectFit: "cover" }}
+            />
+          </Col>
+        </Row>
+        <p className="my-4 text-center fw-semibold">
+          Benvenuti nella sezione dedicata agli amanti del peperoncino! Qui
+          troverai informazioni sui ristoranti che offrono piatti piccanti,
+          suggerimenti su come ordinare cibo piccante e curiosità sui diversi
+          tipi di peperoncino e come vengono utilizzati nella cucina.
+        </p>
+        <p className="text-center">
+          Il peperoncino è un ingrediente versatile che può aggiungere sapore e
+          piccantezza a molti piatti. Che tu preferisca il calore delicato del
+          peperoncino jalapeño o il fuoco intenso del habanero, c'è un
+          peperoncino adatto a ogni palato. E con così tanti ristoranti che
+          offrono opzioni piccanti, non c'è mai stato un momento migliore per
+          essere un amante del peperoncino!
+        </p>
+        <Row className="my-4">
+          {restaurants.map((restaurant, index) => (
+            <Col md={3} key={index}>
+              <Card className="mb-3">
+                <Card.Img
+                  variant="top"
+                  src={restaurant.imageUrl}
+                  className="card-img"
+                />
+                <Card.Body>
+                  <Card.Title>{restaurant.name}</Card.Title>
+                  <Card.Text>{restaurant.location}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </>
   );
 };
 
