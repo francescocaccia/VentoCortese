@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../logoColleponi.png";
 import { BiHomeHeart } from "react-icons/bi";
 import { GiMushroomHouse } from "react-icons/gi";
-import { BsTelephoneFill } from "react-icons/bs";
+import { BsTelephoneFill, BsShop } from "react-icons/bs";
 const Navbar = () => {
   return (
     <nav className="navbar sticky-top ">
@@ -12,7 +12,7 @@ const Navbar = () => {
           <img src={logo} alt="logo" width={110} height={110} />
         </NavLink>
       </div>
-      <div className="navbar__links">
+      <div className="navbar__links fw-semibold">
         <NavLink to="/" exact activeClassName="navbar__link--active">
           <div className="d-flex align-items-center">
             <span className="fs-5">
@@ -32,6 +32,13 @@ const Navbar = () => {
             <span className="fs-5">
               <BsTelephoneFill />
               contatti
+            </span>
+          </div>
+        </NavLink>
+        <NavLink to="/Shop" exact activeClassName="navbar__link--active">
+          <div className="d-flex align-items-center">
+            <span className="fs-5">
+              <BsShop /> Shop
             </span>
           </div>
         </NavLink>
