@@ -205,3 +205,20 @@ h2 {
   height: 130px;
   object-fit: cover;
 }
+
+/* Card */
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* icone */
+/* Stile di base per le icone */
+.contact-icon {
+  transition: color 0.3s ease; /* Aggiunge una transizione per un effetto fluido */
+}
+
+/* Stile delle icone durante l'hover */
+.contact-icon:hover {
+  color: rgb(207, 185, 160); /* Cambia il colore durante l'hover */
+}

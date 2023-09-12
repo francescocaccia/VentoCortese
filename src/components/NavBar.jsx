@@ -20,14 +20,14 @@ const Navbar = () => {
             </span>
           </div>
         </NavLink>
-        <NavLink to="/Room" activeClassName="navbar__link--active">
+        <NavLink to="/room" activeClassName="navbar__link--active">
           <div className="d-flex align-items-center">
             <span className="fs-5">
               <GiMushroomHouse /> le nostre camere
             </span>
           </div>
         </NavLink>
-        <NavLink to="/contact" activeClassName="navbar__link--active">
+        <NavLink to="/contacts" activeClassName="navbar__link--active">
           <div className="d-flex align-items-center">
             <span className="fs-5">
               <BsTelephoneFill />
@@ -35,7 +35,7 @@ const Navbar = () => {
             </span>
           </div>
         </NavLink>
-        <NavLink to="/Shop" exact activeClassName="navbar__link--active">
+        <NavLink to="/shop" exact activeClassName="navbar__link--active">
           <div className="d-flex align-items-center">
             <span className="fs-5">
               <BsShop /> Shop
