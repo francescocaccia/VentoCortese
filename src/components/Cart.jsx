@@ -1,3 +1,6 @@
+import { connect } from "react-redux";
+import React from "react";
+import { removeFromCart } from "../Redux/action";
 const Cart = ({ cartItems, removeItem }) => {
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
@@ -23,7 +26,11 @@ const Cart = ({ cartItems, removeItem }) => {
                 <p className="price">Prezzo: ${item.price}</p>
                 <button
                   className="remove-button"
-                  onClick={() => removeItem(item.id)}
+                  onClick={() => {
+                    if (cartItems.some((cartItem) => cartItem.id === item.id)) {
+                      removeItem(item.id);
+                    }
+                  }}
                 >
                   Rimuovi
                 </button>
