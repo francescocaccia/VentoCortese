@@ -8,6 +8,7 @@ import Room from "./components/Room";
 import Footer from "./components/Footer";
 import Shop from "./components/Shop";
 import Contacts from "./components/Contacts";
+import Cart from "./components/Cart";
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
           <Route path="/Room" element={<Room />} />
           <Route path="/Shop" element={<Shop />} />
           <Route path="/contacts" element={<Contacts />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -5,13 +5,16 @@ import {
   Col,
   Image,
   Card,
-  Form,
   Modal,
   Button,
 } from "react-bootstrap";
 import logo from "../logoColleponi.png";
 import { GiShoppingCart } from "react-icons/gi";
 import { IoIosClose } from "react-icons/io";
+import { connect } from "react-redux";
+import { addToCart } from "../Redux/action";
+
+// ... il tuo componente Shop
 
 const mieleries = [
   {
@@ -67,14 +70,16 @@ const mieleries = [
   },
 ];
 
-const Shop = () => {
+const Shop = ({ addToCart }) => {
   const [showModal, setShowModal] = useState(false);
   const [currentMielery, setCurrentMielery] = useState(null);
-
+  const [cart, setCart] = useState(0);
   const handleCardClick = (mielery) => {
     setCurrentMielery(mielery);
     setShowModal(true);
   };
+
+  const [cartItems, setCartItems] = useState([]);
 
   const handleCloseModal = () => {
     setCurrentMielery(null);
@@ -168,7 +173,14 @@ const Shop = () => {
           <Button variant="info" onClick={handleCloseModal} className="mr-2">
             <IoIosClose /> Chiudi
           </Button>
-          <Button variant="info" onClick={handleCloseModal}>
+          <Button
+            variant="info"
+            onClick={() => {
+              addToCart(currentMielery);
+              setCartItems([...cartItems, currentMielery]);
+              alert("Prodotto aggiunto correttamente al carrello");
+            }}
+          >
             <GiShoppingCart /> Agg. al carrello
           </Button>
         </Modal.Footer>
@@ -177,4 +189,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default connect(null, { addToCart })(Shop);

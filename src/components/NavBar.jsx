@@ -5,7 +5,9 @@ import { BiHomeHeart } from "react-icons/bi";
 import { GiMushroomHouse, GiShoppingCart } from "react-icons/gi";
 import { BsShop } from "react-icons/bs";
 import { AiOutlinePhone } from "react-icons/ai";
-const Navbar = () => {
+import { connect } from "react-redux";
+
+const Navbar = ({ cartItemCount }) => {
   return (
     <nav className="navbar sticky-top ">
       <div className="navbar__logo">
@@ -43,11 +45,11 @@ const Navbar = () => {
             </span>
           </div>
         </NavLink>
-        <NavLink to="/shop" exact activeClassName="navbar__link--active">
+        <NavLink to="/cart" exact activeClassName="navbar__link--active">
           <div className="d-flex align-items-center">
             <span className="fs-5">
               <GiShoppingCart />
-              <span></span> carrello
+              <span>{cartItemCount}</span> carrello
             </span>
           </div>
         </NavLink>
@@ -56,4 +58,10 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+    cartItemCount: state.cart.length, // Assumi che "cart" sia la chiave in cui mantieni il carrello nello stato Redux
+  };
+};
+
+export default connect(mapStateToProps)(Navbar);

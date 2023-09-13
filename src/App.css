@@ -222,3 +222,80 @@ h2 {
 .contact-icon:hover {
   color: rgb(207, 185, 160); /* Cambia il colore durante l'hover */
 }
+
+/* Carrello / Cart */
+
+/* Contenitore principale del carrello */
+.cart {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Singolo elemento nel carrello */
+.cart-item {
+  width: 80%;
+  margin: 20px 0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Immagine dell'elemento nel carrello */
+.cart-item-image {
+  width: 100px;
+  height: auto;
+}
+
+/* Dettagli dell'elemento nel carrello */
+.cart-item-details {
+  flex: 1;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prezzo */
+.price {
+  color: green;
+}
+
+/* Bottone di rimozione */
+.remove-button {
+  background-color: white;
+  color: rgb(5, 5, 5);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 4px;
+}
+
+.remove-button:hover {
+  background-color: red;
+  color: white;
+}
+
+/* Bottone di checkout */
+.checkout-button {
+  width: 100%;
+  max-width: 200px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.checkout-button:hover {
+  background-color: darkblue;
+}
