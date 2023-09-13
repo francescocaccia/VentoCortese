@@ -16,6 +16,12 @@
 
 ## Contattami
 
-Se hai domande o desideri ulteriori informazioni, non esitare a contattarmi tramite ![-📧 Email: [cacciapuotifrancesco3@gmail.com] -👥 LinkedIn: Francesco Cacciapuoti -🐙 GitHub: francescocaccia -📒 Portfolio: Portfolio].
+Se hai domande o desideri ulteriori informazioni, non esitare a contattarmi tramite:
+
+- 📧 Email: [cacciapuotifrancesco3@gmail.com](mail:cacciapuotifrancesco3@gmail.com)
+- 👥 LinkedIn: [Francesco Cacciapuoti](https://www.linkedin.com/in/francesco-cacciapuoti-45019718a/)
+- 🐙 GitHub: [francescocaccia](https://github.com/francescocaccia)
+- 📒 Portfolio: [Portfolio](https://portfolio-francesco-cacciapuoti.vercel.app/) 
 
 Grazie per l'interesse in **VentoCortese** e speriamo di vederti presto nelle Marche!
+
