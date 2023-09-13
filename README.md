@@ -2,7 +2,7 @@
 
 **VentoCortese**![Screenshot VentoCortese](https://github.com/francescocaccia/VentoCortese/assets/123968277/41ad8a0d-3959-4906-a44a-de109281c545)
  rappresenta la realizzazione di un sogno che ho condiviso con la mia ragazza. Si tratta di un sito dedicato a una casa vacanze nelle Marche, una regione meravigliosa dell'Italia. Ma non è solo questo: **VentoCortese** è anche una vetrina per prodotti locali, selezionati con cura, che rispecchiano la qualità e la tradizione della nostra terra.
-
+(Ovviamente ci sto ancora lavorando e man mano implementerò sempre più funzionalità)
 ## Caratteristiche Principali
 
 - **Prenotazioni Casa Vacanze**: Facilità nella prenotazione per il tuo soggiorno nelle Marche.
