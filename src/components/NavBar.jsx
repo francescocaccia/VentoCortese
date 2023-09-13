@@ -49,7 +49,7 @@ const Navbar = ({ cartItemCount }) => {
           <div className="d-flex align-items-center">
             <span className="fs-5">
               <GiShoppingCart />
-              <span>{cartItemCount}</span> carrello
+              <span>{cartItemCount}</span>
             </span>
           </div>
         </NavLink>

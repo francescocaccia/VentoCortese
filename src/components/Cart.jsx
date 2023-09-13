@@ -32,6 +32,7 @@ const Cart = ({ cartItems, removeItem }) => {
           ))}
           <div className="cart-summary">
             <h4>Importo totale: ${getTotalPrice()}</h4>
+
             <button
               className="checkout-button"
               onClick={() => console.log("Vai al pagamento")}
