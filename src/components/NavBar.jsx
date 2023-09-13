@@ -2,8 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../logoColleponi.png";
 import { BiHomeHeart } from "react-icons/bi";
-import { GiMushroomHouse } from "react-icons/gi";
-import { BsTelephoneFill, BsShop } from "react-icons/bs";
+import { GiMushroomHouse, GiShoppingCart } from "react-icons/gi";
+import { BsShop } from "react-icons/bs";
+import { AiOutlinePhone } from "react-icons/ai";
 const Navbar = () => {
   return (
     <nav className="navbar sticky-top ">
@@ -30,7 +31,7 @@ const Navbar = () => {
         <NavLink to="/contacts" activeClassName="navbar__link--active">
           <div className="d-flex align-items-center">
             <span className="fs-5">
-              <BsTelephoneFill />
+              <AiOutlinePhone />
               contatti
             </span>
           </div>
@@ -38,7 +39,15 @@ const Navbar = () => {
         <NavLink to="/shop" exact activeClassName="navbar__link--active">
           <div className="d-flex align-items-center">
             <span className="fs-5">
-              <BsShop /> Shop
+              <BsShop /> shop
+            </span>
+          </div>
+        </NavLink>
+        <NavLink to="/shop" exact activeClassName="navbar__link--active">
+          <div className="d-flex align-items-center">
+            <span className="fs-5">
+              <GiShoppingCart />
+              <span></span> carrello
             </span>
           </div>
         </NavLink>

@@ -1,6 +1,18 @@
-import React from "react";
-import { Container, Row, Col, Image, Card } from "react-bootstrap";
+import React, { useState } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Image,
+  Card,
+  Form,
+  Modal,
+  Button,
+} from "react-bootstrap";
 import logo from "../logoColleponi.png";
+import { GiShoppingCart } from "react-icons/gi";
+import { IoIosClose } from "react-icons/io";
+
 const mieleries = [
   {
     name: "Miele Dolcezza",
@@ -55,109 +67,20 @@ const mieleries = [
   },
 ];
 
-const salumeries = [
-  {
-    name: "Salumeria Italiana",
-    location: "Roma",
-    description:
-      "Un negozio storico che offre una vasta selezione di salumi italiani di alta qualità.",
-    rating: 4.7,
-    imageUrl:
-      "https://salumificiodigenga.it/wp-content/uploads/2022/01/Salumificio-di-Genga-02335.jpg",
-  },
-  {
-    name: "Salumi del Piemonte",
-    location: "Torino",
-    description:
-      "Specialisti dei salumi piemontesi tradizionali, perfetti per gli amanti del gusto autentico.",
-    rating: 4.6,
-    imageUrl:
-      "https://www.storienogastronomiche.it/wp-content/uploads/2019/09/copertina-articoli-19.jpg",
-  },
-  {
-    name: "Salumi Toscani",
-    location: "Firenze",
-    description:
-      "Un paradiso per chi ama i salumi toscani, con una varietà di opzioni deliziose.",
-    rating: 4.8,
-    imageUrl:
-      "https://www.ilmangiaweb.it/immagini/prodotti/2018_09/36/364978747884/gallery/salame-morbido-di-genga_p364978747884_02.jpg",
-  },
-  {
-    name: "Salumi della Sicilia",
-    location: "Palermo",
-    description:
-      "Scopri i segreti dei salumi siciliani artigianali, pieni di sapore mediterraneo.",
-    rating: 4.5,
-    imageUrl:
-      "https://www.adriamarket.com/wp-content/uploads/2020/06/SALAME_MARCHIGIANO.jpg",
-  },
-  {
-    name: "Salumi delle Alpi",
-    location: "Trento",
-    description:
-      "I migliori salumi delle Alpi italiane, con ingredienti di alta qualità da montagna.",
-    rating: 4.9,
-    imageUrl:
-      "https://www.foodfind.it/media/anagrafica/14/Bassa_Salumificio-di-Genga-Sentinum06008-Il-Gigante.jpg",
-  },
-  {
-    name: "Salumi della Campania",
-    location: "Napoli",
-    description:
-      "Prova i salumi tradizionali della Campania e goditi il sapore dell'Italia meridionale.",
-    rating: 4.7,
-    imageUrl:
-      "https://salumificiodigenga.it/wp-content/uploads/2022/09/LE_TRADIZIONI.jpg",
-  },
-];
-
-function renderRatingStars(rating) {
-  const maxRating = 5;
-  const starArray = [];
-
-  for (let i = 1; i <= maxRating; i++) {
-    if (i <= rating) {
-      // Se la stella è inferiore o uguale al rating, colorala di giallo
-      starArray.push(
-        <span key={i} className="star yellow-star">
-          &#9733;
-        </span>
-      );
-    } else {
-      // Altrimenti, lascia la stella grigia
-      starArray.push(
-        <span key={i} className="star">
-          &#9733;
-        </span>
-      );
-    }
-  }
-
-  return <div className="rating">{starArray}</div>;
-}
-const SalumerieList = ({ salumeries }) => (
-  <Row className="my-4">
-    {salumeries.map((salumeria, index) => (
-      <Col md={3} key={index}>
-        <Card className="mb-3">
-          <Card.Img
-            variant="top"
-            src={salumeria.imageUrl}
-            className="card-img"
-          />
-          <Card.Body>
-            <Card.Title>{salumeria.name}</Card.Title>
-            <Card.Text>{salumeria.location}</Card.Text>
-            {renderRatingStars(salumeria.rating)}{" "}
-            {/* Visualizza il rating con stelle colorate */}
-          </Card.Body>
-        </Card>
-      </Col>
-    ))}
-  </Row>
-);
 const Shop = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [currentMielery, setCurrentMielery] = useState(null);
+
+  const handleCardClick = (mielery) => {
+    setCurrentMielery(mielery);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setCurrentMielery(null);
+    setShowModal(false);
+  };
+
   return (
     <>
       <Container>
@@ -196,64 +119,60 @@ const Shop = () => {
           esplorare il mondo del miele come mai prima d'ora!
         </p>
         <Row className="my-4">
-          {mieleries.map((mieleries, index) => (
-            <Col md={3} key={index}>
+          {mieleries.map((mielery, index) => (
+            <Col md={3} key={index} onClick={() => handleCardClick(mielery)}>
               <Card className="mb-3">
                 <Card.Img
                   variant="top"
-                  src={mieleries.imageUrl}
+                  src={mielery.imageUrl}
                   className="card-img"
                 />
                 <Card.Body>
                   <Card.Title>
-                    <h3>{mieleries.name}</h3>
+                    <h3>{mielery.name}</h3>
                   </Card.Title>
-                  <Card.Text>{mieleries.location}</Card.Text>
-                  <Card.Text>{mieleries.rating}</Card.Text>
+                  <Card.Text>{mielery.location}</Card.Text>
+                  <Card.Text>{mielery.rating}</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
           ))}
         </Row>
       </Container>
-      <Container>
-        <h3 className="mb-3">I nostri Salumi...</h3>
-        <Row>
-          <Col md={5}>
-            <Image
-              src="https://salumificiodigenga.it/wp-content/uploads/2022/09/LE_TRADIZIONI.jpg"
-              fluid
-              style={{ width: "100%", height: "200px", objectFit: "cover" }}
-            />
-          </Col>
-          <Col md={2}>
-            <Image src={logo} fluid />
-          </Col>
-          <Col md={5}>
-            <Image
-              src="https://www.mark-up.it/wp-content/uploads/sites/3/2021/06/Famiglia_prodotti-696x464.jpg"
-              fluid
-              style={{ width: "100%", height: "200px", objectFit: "cover" }}
-            />
-          </Col>
-        </Row>
-        <p className="my-4 text-center fw-semibold">
-          Benvenuti nella sezione dedicata agli amanti dei salumi! Qui troverete
-          informazioni su salumerie di alta qualità che offrono una vasta
-          selezione di salumi italiani. Scoprirete le delizie dei salumi
-          tradizionali provenienti da diverse regioni italiane e troverete
-          consigli su come apprezzarli al meglio.
-        </p>
-        <p className="text-center">
-          I salumi italiani sono famosi in tutto il mondo per la loro varietà di
-          gusti e sapori unici. Che tu preferisca il prosciutto crudo, la coppa,
-          o la salame, c'è un salume perfetto per ogni occasione. Con negozi
-          specializzati in diverse città italiane, avrete l'opportunità di
-          esplorare l'arte dei salumi come mai prima d'ora!
-        </p>
 
-        <SalumerieList salumeries={salumeries} />
-      </Container>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Dettagli Miele</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {currentMielery && (
+            <>
+              <h2>{currentMielery.name}</h2>
+              <p>
+                <span className="fs-4 text-info">Location:</span>{" "}
+                {currentMielery.location}
+              </p>
+              <p>
+                <span className="fs-4 text-info">Description:</span>{" "}
+                {currentMielery.description}
+              </p>
+              <p>
+                <span className="fs-4 text-info">Rating:</span>{" "}
+                {currentMielery.rating}
+              </p>
+              <Image src={currentMielery.imageUrl} fluid />
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer className="d-flex justify-content-between">
+          <Button variant="info" onClick={handleCloseModal} className="mr-2">
+            <IoIosClose /> Chiudi
+          </Button>
+          <Button variant="info" onClick={handleCloseModal}>
+            <GiShoppingCart /> Agg. al carrello
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
