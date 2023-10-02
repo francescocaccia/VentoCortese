@@ -28,6 +28,19 @@ h2 {
 .navbar__links a:hover {
   color: rgb(207, 185, 160);
 }
+/* SPINNER CARICAMNETO */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.custom-spinner img {
+  animation: spin 1s linear infinite;
+}
 
 /*VIDEO PRINCIPALE HOMEPAGE*/
 
