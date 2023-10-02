@@ -12,6 +12,7 @@ h2 {
     255,
     0.5
   ); /* Questo rende la navbar semi-trasparente */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Aggiungi il box shadow */
 }
 
 .navbar__links {
@@ -25,92 +26,10 @@ h2 {
 }
 
 .navbar__links a:hover {
-  color: rgb(
-    207,
-    185,
-    160
-  ); /* Sostituisci "your_color" con il colore desiderato */
+  color: rgb(207, 185, 160);
 }
 
-/*caroselli*/
-
-.carousel {
-  width: 100%; /* Riduci la larghezza del carosello alla metà */
-  margin: auto; /* Centra il carosello */
-}
-
-.carousel .carousel-item {
-  height: 500px; /* Imposta l'altezza del carosello */
-}
-
-.carousel .carousel-item img {
-  height: 100%; /* Fai in modo che le immagini occupino tutto lo spazio disponibile */
-  object-fit: cover; /* Mantieni le proporzioni delle immagini mentre le ridimensioni */
-}
-
-.carousel .carousel-caption {
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.5
-  ); /* Aggiungi uno sfondo semi-trasparente alle didascalie */
-  border-radius: 10px; /* Arrotonda gli angoli delle didascalie */
-}
-
-/* Aggiungi uno stile personalizzato al bottone nel Carousel */
-.carousel-caption button {
-  background-color: transparent; /* Imposta il colore di sfondo trasparente */
-  border: 2px solid white; /* Aggiunge un bordo bianco di 2 pixel */
-  border-radius: 0; /* Rende il bordo quadrato */
-  padding: 10px 20px; /* Aggiunge spazio interno al bottone */
-  cursor: pointer; /* Cambia il cursore quando si passa sopra al bottone */
-}
-
-.carousel-caption button:hover {
-  background-color: rgb(
-    207,
-    185,
-    160
-  ); /* Cambia il colore di sfondo al passaggio del mouse */
-  color: black;
-}
-
-/* Il resto del tuo CSS... */
-
-/* CSS per le card delle stanze */
-.room-card {
-  flex: 1; /* Fai in modo che le card occupino la stessa larghezza all'interno del container */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px; /* Aggiunge dello spazio tra le card */
-  padding: 10px;
-  border: 1px solid #ccc; /* Aggiungi un bordo per separare le card */
-  border-radius: 10px;
-}
-
-/* Aggiungi il CSS per il carosello all'interno delle card, assicurandoti che si adatti alle dimensioni della card */
-/* CSS per le immagini nei caroselli */
-.room-card .carousel .carousel-item img {
-  max-height: 200px; /* Imposta un'altezza massima per le immagini */
-  width: auto; /* Lascia che la larghezza delle immagini si adatti automaticamente per mantenere le proporzioni */
-}
-
-/* CSS per i caroselli */
-.room-card .carousel {
-  width: 100%; /* Larghezza del carosello al 100% della card */
-  max-height: 300px; /* Imposta un'altezza massima per il carosello */
-  overflow: hidden; /* Nascondi l'overflow del carosello in caso di immagini più grandi */
-}
-
-.room-card .carousel .carousel-item img {
-  max-height: 200px; /* Imposta un'altezza massima per le immagini per evitare sforbiciature */
-}
-
-/* Il resto del tuo CSS... */
-
-/*prova di background image*/
+/*VIDEO PRINCIPALE HOMEPAGE*/
 
 .background {
   position: relative;
@@ -126,9 +45,37 @@ h2 {
   font-family: "Indie Flower", cursive;
   font-size: 4vw;
 }
+/* LOGO */
+/* Aggiungi ombra all'immagine */
+
+.img-with-shadow {
+  filter: drop-shadow(
+    0px 0px 10px rgba(0, 0, 0, 2)
+  ); /* Personalizza l'ombra secondo le tue preferenze, qui sotto per dare un colore preferito all'ombra */
+}
+/* .img-with-shadow {
+  filter: drop-shadow(0px 0px 10px rgba(207, 185, 160, 1));
+} */
+
+/*caroselli*/
+
+/* Per gli appartamenti */
+
+/* Per il carosello illustrativo */
+.illustrative-carousel .carousel-item {
+  height: 400px; /* Modifica questa altezza come desideri */
+  overflow: hidden;
+}
+
+.illustrative-carousel .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /* roooooommmmmmmmmm */
-
+/* LISTINO PREZZI  PAGINA ROOM */
+/* Listino Prezzi */
 .price-list {
   background-color: rgb(207, 185, 160);
   padding: 20px;
@@ -142,8 +89,9 @@ h2 {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
-  margin: 10px;
+  margin: 10px auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
 }
 
 .price-item h4 {
@@ -155,42 +103,84 @@ h2 {
   font-size: 16px;
 }
 
+/* Room Card */
+.custom-card {
+  background-color: rgb(207, 185, 160);
+  transition: transform 0.5s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-card-body,
+.custom-card-footer {
+  background-color: rgb(207, 185, 160);
+}
+
+.custom-card-row {
+  margin-bottom: 4rem;
+}
+
+.custom-card-col {
+  margin-bottom: 4rem;
+}
+
+.custom-card:hover {
+  transform: scale(1.05); /* Light zoom effect on hover */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-card-img {
+  object-fit: contain;
+  width: 100%;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+/* Carousels within Room Card */
+.custom-carousel {
+  max-height: 200px;
+  overflow: hidden;
+  border: 2px solid #85c1e9; /* Blu leggero */
+}
+
+.custom-carousel-item {
+  height: 200px;
+}
+
+.custom-carousel-img {
+  object-fit: cover;
+  max-height: 200px;
+}
+
+/* Second Carousel (per il secondo appartamento, se lo desideri) */
+.custom-card-col:nth-child(2) .custom-carousel {
+  border-color: #f7dc6f; /* Giallo chiaro */
+}
+
+/* Third Carousel (per il terzo appartamento) */
+.custom-card-col:nth-child(3) .custom-carousel {
+  border-color: #18f06e; /* Verde chiaro */
+}
+
+/* Fourth Carousel (per il quarto appartamento) */
+.custom-card-col:nth-child(4) .custom-carousel {
+  border-color: red; /* Rosa chiaro */
+}
+
+/* Special styling for the last carousel */
+.last-carousel {
+  border: 2px solid #f1948a;
+}
+
+.last-carousel-img {
+  object-fit: cover;
+}
+
 /* footerrrr */
 .footer {
   background-color: rgb(207, 185, 160);
 }
 
-/* prova per caroselli room */
-
-.carousel-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colonne per i caroselli */
-  gap: 20px; /* Spazio tra i caroselli */
-}
-
-.carousel-item {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s ease; /* Animazione di trasformazione */
-}
-
-/* Stile specifico per ciascun carosello */
-/* .carousel-item:nth-child(1) {
-  transform: rotate(-5deg);
-}
-
-.carousel-item:nth-child(2) {
-  transform: rotate(5deg);
-}
-
-.carousel-item:nth-child(3) {
-  transform: rotate(-3deg);
-} */
-
-/* Aggiungi ulteriori stili per personalizzare l'aspetto dei caroselli */
+/* Shop */
 
 /* Card */
 .card {
@@ -206,7 +196,6 @@ h2 {
   object-fit: cover;
 }
 
-/* Card */
 .card:hover {
   transform: scale(1.1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
@@ -299,5 +288,3 @@ h2 {
 .checkout-button:hover {
   background-color: darkblue;
 }
-
-/* esperimento card immagini room */

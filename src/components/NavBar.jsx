@@ -16,7 +16,13 @@ const Navbar = ({ cartItemCount }) => {
     <nav className="navbar sticky-top ">
       <div className="navbar__logo">
         <Link to="/">
-          <img src={logo} alt="logo" width={110} height={110} />
+          <img
+            src={logo}
+            alt="logo"
+            width={110}
+            height={110}
+            className="img-with-shadow"
+          />
         </Link>
       </div>
       <div className="navbar__links fw-semibold">

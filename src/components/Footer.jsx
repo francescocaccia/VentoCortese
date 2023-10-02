@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="footer mt-5">
         <div className="d-flex justify-content-center">
           <img
-            className="mt-4"
+            className="img-with-shadow mt-4"
             src={logo}
             alt="logo"
             width={210}

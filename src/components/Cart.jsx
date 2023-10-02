@@ -10,7 +10,7 @@ const Cart = ({ cartItems, removeItem }) => {
     <div className="cart">
       <h2>Carrello</h2>
       {cartItems.length === 0 ? (
-        <p className="empty-cart">Il carrello è vuoto.</p>
+        <p className="empty-cart">Il carrello è vuoto...</p>
       ) : (
         <>
           {cartItems.map((item) => (

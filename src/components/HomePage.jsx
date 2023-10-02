@@ -25,7 +25,13 @@ const HomePage = () => {
         </video>
         <div className="background__text size-5">
           <div className="d-flex justify-content-center">
-            <img src={logo} alt="logo" width={310} height={310} />
+            <img
+              src={logo}
+              alt="logo"
+              width={310}
+              height={310}
+              className="img-with-shadow"
+            />
           </div>
           <p className="fs-1">
             Benvenuti a VentoCortese, il vostro rifugio ideale per una vacanza
@@ -85,16 +91,17 @@ const HomePage = () => {
         sono intorno a noi
       </h2>
       {/* carosello illustrativo genga */}
-      <Carousel className="mt-5">
-        <Carousel.Item>
+      <Carousel className="illustrative-carousel mt-5">
+        <Carousel.Item className="illustrative-carousel-item">
           <img className="d-block w-100" src={genga} alt="First slide" />
-          <Carousel.Caption>
-            <Button>
+          <Carousel.Caption className="illustrative-carousel-caption">
+            <Button className="illustrative-carousel-button">
               <h3>Prima diapositiva</h3>
             </Button>
             <p>Descrizione della prima diapositiva.</p>
           </Carousel.Caption>
         </Carousel.Item>
+
         <Carousel.Item>
           <img className="d-block w-100" src={pieroSara} alt="second slide" />
           <Carousel.Caption>
