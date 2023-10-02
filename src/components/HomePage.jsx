@@ -28,7 +28,7 @@ const HomePage = () => {
             <img src={logo} alt="logo" width={310} height={310} />
           </div>
           <p className="fs-1">
-            Benvenuti a Vento Cortese, il vostro rifugio ideale per una vacanza
+            Benvenuti a VentoCortese, il vostro rifugio ideale per una vacanza
             rilassante immersa nella natura
           </p>
         </div>
@@ -81,7 +81,8 @@ const HomePage = () => {
       </Container>
       <h2 className="text-center mt-3">
         C'è un modo ricco di cultura intorno a noi da poter visitare in pieno
-        relax
+        relax. Organizziamo escursioni per i vari luoghi di interesse che ci
+        sono intorno a noi
       </h2>
       {/* carosello illustrativo genga */}
       <Carousel className="mt-5">

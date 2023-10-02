@@ -91,6 +91,7 @@ const Shop = ({ addToCart }) => {
       <Container>
         <h2 className="text-center my-4">Il nostro shop...</h2>
         <h3 className="mb-3">Il nostro Miele...</h3>
+
         <Row>
           <Col md={5}>
             <Image

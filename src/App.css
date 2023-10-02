@@ -178,7 +178,7 @@ h2 {
 }
 
 /* Stile specifico per ciascun carosello */
-.carousel-item:nth-child(1) {
+/* .carousel-item:nth-child(1) {
   transform: rotate(-5deg);
 }
 
@@ -188,7 +188,7 @@ h2 {
 
 .carousel-item:nth-child(3) {
   transform: rotate(-3deg);
-}
+} */
 
 /* Aggiungi ulteriori stili per personalizzare l'aspetto dei caroselli */
 
@@ -299,3 +299,5 @@ h2 {
 .checkout-button:hover {
   background-color: darkblue;
 }
+
+/* esperimento card immagini room */
