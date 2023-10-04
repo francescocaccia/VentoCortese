@@ -32,6 +32,13 @@ const CalendarComponent = ({ id }) => {
       );
       return;
     }
+    // Chiedi conferma all'utente
+    const isConfirmed = window.confirm(
+      "Sei sicuro di voler prenotare l'appartamento?"
+    );
+    if (!isConfirmed) {
+      return; // Se l'utente non conferma, interrompe l'operazione.
+    }
 
     const formatDate = (date) => {
       return `${("0" + date.getDate()).slice(-2)}/${(
@@ -62,7 +69,7 @@ const CalendarComponent = ({ id }) => {
       if (!response.ok) {
         throw new Error("Errore durante la prenotazione");
       }
-
+      alert("Prenotazione effettuata con successo");
       console.log("Prenotazione effettuata con successo");
     } catch (error) {
       console.error("Errore durante la prenotazione:", error);
