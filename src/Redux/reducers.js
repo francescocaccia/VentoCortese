@@ -1,5 +1,9 @@
+import { SET_PRENOTAZIONI, FETCH_PRENOTAZIONI_ERROR } from "../Redux/action";
+
 const initialState = {
   cart: [],
+  prenotazioni: [],
+  error: null,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -17,6 +21,10 @@ const Reducer = (state = initialState, action) => {
         ...state,
         cart: updatedCart,
       };
+    case SET_PRENOTAZIONI:
+      return { ...state, prenotazioni: action.payload };
+    case FETCH_PRENOTAZIONI_ERROR:
+      return { ...state, error: action.payload };
     default:
       return state;
   }

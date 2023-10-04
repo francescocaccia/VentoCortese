@@ -11,11 +11,20 @@ import Shop from "./components/Shop";
 import Contacts from "./components/Contacts";
 import Cart from "./components/Cart";
 import DetailsRoom from "./components/DetailsRoom";
+import Register from "./components/Register";
+import { useDispatch } from "react-redux";
+import Login from "./components/Login";
 
 function App() {
+  const [userID, setUserID] = useState("");
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setUserID(localStorage.getItem("userID"));
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:8080/appartamentini/all")
@@ -29,6 +38,10 @@ function App() {
         setLoading(false);
       });
   }, []);
+  const updateUserID = (id) => {
+    dispatch(setUserIDAction(id));
+    localStorage.setItem("userID", id); // salva l'userID nel localStorage
+  };
 
   return (
     <>
@@ -42,8 +55,13 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/room/:id"
-            element={<DetailsRoom apartments={apartments} />}
+            element={<DetailsRoom apartments={apartments} userID={userID} />}
           />
+          <Route
+            path="/register"
+            element={<Register setUserID={updateUserID} />}
+          />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </BrowserRouter>

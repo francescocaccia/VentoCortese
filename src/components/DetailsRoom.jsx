@@ -1,12 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Card } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setPrenotazioni, fetchPrenotazioniError } from "../Redux/action";
+import { Button, Card, Carousel } from "react-bootstrap";
+import CalendarComponent from "./CalendarComponent";
 
-const DetailsRoom = ({ apartments }) => {
+const DetailsRoom = ({ apartments, userID }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const prenotazioni = useSelector((state) => state.prenotazioni);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/prenotazioni/${id}`
+        );
+        const data = await response.json();
+        dispatch(setPrenotazioni(data));
+      } catch (error) {
+        console.error("Errore durante il fetch delle prenotazioni:", error);
+        dispatch(fetchPrenotazioniError(error));
+      }
+    };
+
+    fetchData();
+  }, [id, dispatch]);
+
   const apartment = apartments.find(
-    (apt) => apt.idAppartamentino === parseInt(id)
+    (apt) => apt.idAppartamentino == id || apt.idAppartamentino == parseInt(id)
   );
 
   if (!apartment) {
@@ -17,14 +41,12 @@ const DetailsRoom = ({ apartments }) => {
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-8">
-          <Card className="custom-card">
+          <Card>
             <Card.Body>
-              <Card.Title className="custom-card-title font-weight-bold">
+              <Card.Title className="font-weight-bold">
                 {apartment.nome}
               </Card.Title>
-              <Card.Text className="custom-card-text">
-                {apartment.descrizione}
-              </Card.Text>
+              <Card.Text>{apartment.descrizione}</Card.Text>
               <Card.Text>
                 <strong>Numero di camere:</strong> {apartment.numeroDiCamere}
               </Card.Text>
@@ -40,15 +62,37 @@ const DetailsRoom = ({ apartments }) => {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Link to="/Room">Torna alla lista degli appartamenti</Link>
+              <Link to="/Room" className="text-decoration-none text-dark">
+                Torna alla lista degli appartamenti
+              </Link>
             </Card.Footer>
           </Card>
         </div>
         <div className="col-md-4">
-          <img
-            src={apartment.immagini[0].url}
-            alt={apartment.nome}
-            className="img-fluid"
+          <Carousel className="custom-carousel">
+            {Object.entries(apartment.immagini[0])
+              .filter(
+                ([, imageUrl]) =>
+                  typeof imageUrl === "string" && imageUrl.trim() !== ""
+              )
+              .map(([key, imageUrl], idx) => (
+                <Carousel.Item key={idx} className="custom-carousel-item">
+                  <img
+                    className="d-block w-100 custom-carousel-img"
+                    src={imageUrl}
+                    alt={`Immagine ${idx + 1} di ${apartment.nome}`}
+                  />
+                </Carousel.Item>
+              ))}
+          </Carousel>
+          <Link to="/login">
+            <Button>login</Button>
+          </Link>
+
+          <CalendarComponent
+            id={id}
+            prenotazioni={prenotazioni}
+            idCliente={userID}
           />
         </div>
       </div>
