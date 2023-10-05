@@ -40,7 +40,7 @@ const DetailsRoom = ({ apartments, userID }) => {
   return (
     <Container className="mt-5">
       <Row>
-        <Col>
+        <Col md={6}>
           <Card>
             <Card.Body>
               <Card.Title className="font-weight-bold">
@@ -68,9 +68,9 @@ const DetailsRoom = ({ apartments, userID }) => {
             </Card.Footer>
           </Card>
         </Col>
-        <Col>
+        <Col md={6}>
           <div data-aos="fade-down-left">
-            <Carousel className="custom-carousel">
+            <Carousel className="custom-carousel d-flex flex-column">
               {Object.entries(apartment.immagini[0])
                 .filter(
                   ([, imageUrl]) =>
@@ -97,9 +97,6 @@ const DetailsRoom = ({ apartments, userID }) => {
             prenotazioni={prenotazioni}
             idCliente={userID}
           />
-          <Link to="/login">
-            <Button>login</Button>
-          </Link>
         </Col>
       </Row>
     </Container>

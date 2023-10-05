@@ -1,5 +1,7 @@
 import React from "react";
 import logo from "../logoColleponi.png";
+import { GiItalia } from "react-icons/gi";
+
 const Footer = () => {
   return (
     <>
@@ -92,7 +94,7 @@ const Footer = () => {
                   </li>
                   <li className="nav-item mt-2">
                     <a className="nav-link text-muted" href="/">
-                      © 1997-2023 App&tito Inc
+                      © 1997-2023 VentoCortese Inc <GiItalia className="fs-3" />
                     </a>
                   </li>
                 </ul>

@@ -66,12 +66,18 @@ const CalendarComponent = ({ id }) => {
         body: JSON.stringify(bookingData),
       });
 
+      const responseData = await response.json(); // supponendo che il backend risponda con JSON
+
       if (!response.ok) {
-        throw new Error("Errore durante la prenotazione");
+        // Se il backend invia un messaggio di errore, mostralo. Altrimenti, mostra un errore generico.
+        throw new Error(
+          responseData.message || "Errore durante la prenotazione"
+        );
       }
       alert("Prenotazione effettuata con successo");
       console.log("Prenotazione effettuata con successo");
     } catch (error) {
+      alert(error.message); // Mostra il messaggio di errore in un alert
       console.error("Errore durante la prenotazione:", error);
     }
   };
@@ -98,7 +104,11 @@ const CalendarComponent = ({ id }) => {
             formatStyle="large"
           />
         </div>
-        <Button onClick={handleBooking}>Prenota</Button>
+        <div className="d-flex justify-content-center align-items-center mt-3">
+          <Button className="btn btn-success" onClick={handleBooking}>
+            Prenota
+          </Button>
+        </div>
 
         <Table striped bordered hover className="mt-4">
           <thead>

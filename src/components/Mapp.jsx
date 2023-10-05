@@ -7,7 +7,7 @@ import logo from "../logoColleponi.png";
 const Mapp = ({ lat, lng }) => {
   const customIcon = new Icon({
     iconUrl: logo,
-    iconSize: [50, 50], // Puoi modificare le dimensioni se la tua immagine ha dimensioni diverse.
+    iconSize: [50, 50], //DIMENSIONE IMMAGINE
     className: "custom-icon",
   });
 
@@ -22,7 +22,10 @@ const Mapp = ({ lat, lng }) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <Marker position={[lat, lng]} icon={customIcon}>
-        <Popup>VentoCortese</Popup>
+        <Popup>
+          <img src={logo} style={{ width: 50, height: 50 }} alt="logo" />
+          VentoCortese
+        </Popup>
       </Marker>
     </MapContainer>
   );

@@ -17,6 +17,7 @@ import Register from "./components/Register";
 import { useDispatch } from "react-redux";
 import Login from "./components/Login";
 import Mapp from "./components/Mapp";
+import PayPalCheckOutPage from "./components/PayPalCheckOutPage";
 
 function App() {
   const [userID, setUserID] = useState("");
@@ -75,6 +76,7 @@ function App() {
             path="/mapp"
             element={<Mapp lat={43.4373176} lng={12.9091765} />}
           />
+          <Route path="/checkout" element={<PayPalCheckOutPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

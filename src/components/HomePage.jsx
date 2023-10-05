@@ -91,9 +91,11 @@ const HomePage = () => {
             />
           </div>
         </div>
-
+        <hr className="text-success" />
         <BoxLayout />
+        <hr className="text-success" />
       </Container>
+
       <h2 className="text-center mt-3">
         C'è un modo ricco di cultura intorno a noi da poter visitare in pieno
         relax. Organizziamo escursioni per i vari luoghi di interesse che ci
@@ -130,11 +132,14 @@ const HomePage = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+
       <Container className="mt-5">
+        <hr className="text-success" />
         <h3 className="text-center mb-3">Dove siamo</h3>
         <div className="custom-map-container">
           <Mapp lat={43.4373176} lng={12.9091765} />
         </div>
+        <hr className="text-success" />
       </Container>
     </>
   );

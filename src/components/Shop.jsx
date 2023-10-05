@@ -73,7 +73,7 @@ const mieleries = [
 const Shop = ({ addToCart }) => {
   const [showModal, setShowModal] = useState(false);
   const [currentMielery, setCurrentMielery] = useState(null);
-  const [cart, setCart] = useState(0);
+
   const handleCardClick = (mielery) => {
     setCurrentMielery(mielery);
     setShowModal(true);

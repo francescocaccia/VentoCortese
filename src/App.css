@@ -82,6 +82,7 @@ h2 {
 }
 .box-container {
   background-color: #e6dce6; /* Violetto pastello leggero */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .color-1,
@@ -260,19 +261,21 @@ h2 {
 }
 
 /* Carousels within Room Card */
+/* Carousels within Room Card */
 .custom-carousel {
-  max-height: 300px;
+  height: 300px;
   overflow: hidden;
-  border: 2px solid #85c1e9; /* Blu leggero */
+  border: 2px solid #85c1e9;
+  border-radius: 15px;
 }
 
 .custom-carousel-item {
-  height: 200px;
+  height: 300px;
 }
 
 .custom-carousel-img {
-  object-fit: cover;
-  max-height: 200px;
+  object-fit: cover; /* Questa proprietà manterrà le proporzioni dell'immagine e la "taglierà" se supera le dimensioni del contenitore */
+  height: 100%;
 }
 
 /* Second Carousel (per il secondo appartamento, se lo desideri) */
@@ -411,4 +414,25 @@ h2 {
 
 .checkout-button:hover {
   background-color: darkblue;
+}
+
+/* PAYPAL BUTTON*/
+.paypal-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  border: 2px solid #0070ba; /* Blu PayPal */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.paypal-logo {
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
+.paypal-description {
+  margin-bottom: 2rem;
+  text-align: center;
 }

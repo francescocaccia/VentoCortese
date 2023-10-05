@@ -4,8 +4,10 @@ import { removeFromCart } from "../Redux/action";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Cart = ({ cartItems, removeItem }) => {
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init({
       duration: 1000, // Durata dell'animazione in millisecondi
@@ -14,7 +16,11 @@ const Cart = ({ cartItems, removeItem }) => {
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
   };
-
+  const handleCheckoutClick = () => {
+    if (window.confirm("Sei sicuro di voler proseguire al pagamento?")) {
+      navigate("/checkout");
+    }
+  };
   return (
     <div className="cart">
       <h2>Carrello</h2>
@@ -57,10 +63,7 @@ const Cart = ({ cartItems, removeItem }) => {
           <div className="cart-summary">
             <h4>Importo totale: ${getTotalPrice()}</h4>
 
-            <Button
-              className="checkout-button"
-              onClick={() => console.log("Vai al pagamento")}
-            >
+            <Button className="checkout-button" onClick={handleCheckoutClick}>
               Vai al pagamento
             </Button>
           </div>
