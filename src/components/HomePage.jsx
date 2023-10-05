@@ -61,22 +61,27 @@ const HomePage = () => {
               marginRight: "20px",
             }}
           >
-            <img
-              src="https://www.waterair.com/wp-content/uploads/2021/09/piscine-rectangle-emilie-2-jour_1.jpg"
-              alt="Foro"
-              style={{
-                width: "100%",
-                objectFit: "cover",
-                marginBottom: "20px",
-              }}
-            />
-            <img
-              src="https://www.planetasrl.net/blog/wp-content/uploads/2019/05/giardino-emozionale.jpg"
-              alt="tempio"
-              style={{ width: "100%", objectFit: "cover" }}
-            />
+            <div data-aos="fade-down">
+              <img
+                src="https://www.waterair.com/wp-content/uploads/2021/09/piscine-rectangle-emilie-2-jour_1.jpg"
+                alt="Foro"
+                style={{
+                  width: "100%",
+                  objectFit: "cover",
+                  marginBottom: "20px",
+                }}
+              />
+            </div>
+            <div data-aos="fade-down-left">
+              <img
+                src="https://www.planetasrl.net/blog/wp-content/uploads/2019/05/giardino-emozionale.jpg"
+                alt="tempio"
+                style={{ width: "100%", objectFit: "cover" }}
+              />
+            </div>
           </div>
-          <div style={{ flex: "1 1 0" }}>
+
+          <div data-aos="fade-left" style={{ flex: "1 1 0" }}>
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bergkirchlein_-_Flickr_-_Stiller_Beobachter.jpg"
               alt="abbazia"

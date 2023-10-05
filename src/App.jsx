@@ -14,13 +14,20 @@ import DetailsRoom from "./components/DetailsRoom";
 import Register from "./components/Register";
 import { useDispatch } from "react-redux";
 import Login from "./components/Login";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 function App() {
   const [userID, setUserID] = useState("");
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    AOS.init({
+      // puoi configurare le opzioni qui se necessario
+    });
+  }, []);
 
   useEffect(() => {
     setUserID(localStorage.getItem("userID"));

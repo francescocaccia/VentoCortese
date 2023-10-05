@@ -120,7 +120,6 @@ h2 {
 .custom-card {
   background-color: rgb(207, 185, 160);
   transition: transform 0.5s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .custom-card-body,
@@ -137,8 +136,7 @@ h2 {
 }
 
 .custom-card:hover {
-  transform: scale(1.05); /* Light zoom effect on hover */
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(0.05); /* Light zoom effect on hover */
 }
 
 .custom-card-img {
@@ -150,7 +148,7 @@ h2 {
 
 /* Carousels within Room Card */
 .custom-carousel {
-  max-height: 200px;
+  max-height: 300px;
   overflow: hidden;
   border: 2px solid #85c1e9; /* Blu leggero */
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setPrenotazioni, fetchPrenotazioniError } from "../Redux/action";
-import { Button, Card, Carousel } from "react-bootstrap";
+import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import CalendarComponent from "./CalendarComponent";
 
 const DetailsRoom = ({ apartments, userID }) => {
@@ -38,9 +38,9 @@ const DetailsRoom = ({ apartments, userID }) => {
   }
 
   return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-md-8">
+    <Container className="mt-5">
+      <Row>
+        <Col>
           <Card>
             <Card.Body>
               <Card.Title className="font-weight-bold">
@@ -67,36 +67,42 @@ const DetailsRoom = ({ apartments, userID }) => {
               </Link>
             </Card.Footer>
           </Card>
-        </div>
-        <div className="col-md-4">
-          <Carousel className="custom-carousel">
-            {Object.entries(apartment.immagini[0])
-              .filter(
-                ([, imageUrl]) =>
-                  typeof imageUrl === "string" && imageUrl.trim() !== ""
-              )
-              .map(([key, imageUrl], idx) => (
-                <Carousel.Item key={idx} className="custom-carousel-item">
-                  <img
-                    className="d-block w-100 custom-carousel-img"
-                    src={imageUrl}
-                    alt={`Immagine ${idx + 1} di ${apartment.nome}`}
-                  />
-                </Carousel.Item>
-              ))}
-          </Carousel>
-          <Link to="/login">
-            <Button>login</Button>
-          </Link>
-
+        </Col>
+        <Col>
+          <div data-aos="fade-down-left">
+            <Carousel className="custom-carousel">
+              {Object.entries(apartment.immagini[0])
+                .filter(
+                  ([, imageUrl]) =>
+                    typeof imageUrl === "string" && imageUrl.trim() !== ""
+                )
+                .map(([key, imageUrl], idx) => (
+                  <Carousel.Item key={idx} className="custom-carousel-item">
+                    <img
+                      className="d-block w-100 custom-carousel-img"
+                      src={imageUrl}
+                      alt={`Immagine ${idx + 1} di ${apartment.nome}`}
+                    />
+                  </Carousel.Item>
+                ))}
+            </Carousel>
+          </div>
+        </Col>
+      </Row>
+      <hr />
+      <Row className="mt-4">
+        <Col md={12}>
           <CalendarComponent
             id={id}
             prenotazioni={prenotazioni}
             idCliente={userID}
           />
-        </div>
-      </div>
-    </div>
+          <Link to="/login">
+            <Button>login</Button>
+          </Link>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

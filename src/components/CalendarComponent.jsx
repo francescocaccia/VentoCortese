@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DatePicker } from "react-rainbow-components";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const CalendarComponent = ({ id }) => {
@@ -76,46 +76,50 @@ const CalendarComponent = ({ id }) => {
     }
   };
   return (
-    <div className="container mt-5">
-      <div>
-        <label>Data di Arrivo</label>
-        <DatePicker
-          id="arrivalDatePicker"
-          value={selectedArrivalDate}
-          onChange={handleArrivalDateChange}
-          label="Arrival Date"
-          formatStyle="large"
-        />
-      </div>
-      <div>
-        <label>Data di Partenza</label>
-        <DatePicker
-          id="departureDatePicker"
-          value={selectedDepartureDate}
-          onChange={handleDepartureDateChange}
-          label="Departure Date"
-          formatStyle="large"
-        />
-      </div>
-      <Button onClick={handleBooking}>Prenota</Button>
+    <Container>
+      <div className="container mt-5">
+        <div>
+          <label>Data di Arrivo</label>
+          <DatePicker
+            id="arrivalDatePicker"
+            value={selectedArrivalDate}
+            onChange={handleArrivalDateChange}
+            label="Arrival Date"
+            formatStyle="large"
+          />
+        </div>
+        <div>
+          <label>Data di Partenza</label>
+          <DatePicker
+            id="departureDatePicker"
+            value={selectedDepartureDate}
+            onChange={handleDepartureDateChange}
+            label="Departure Date"
+            formatStyle="large"
+          />
+        </div>
+        <Button onClick={handleBooking}>Prenota</Button>
 
-      <Table striped bordered hover className="mt-4">
-        <thead>
-          <tr>
-            <th>Data di Arrivo</th>
-            <th>Data di Partenza</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{selectedArrivalDate && selectedArrivalDate.toDateString()}</td>
-            <td>
-              {selectedDepartureDate && selectedDepartureDate.toDateString()}
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-    </div>
+        <Table striped bordered hover className="mt-4">
+          <thead>
+            <tr>
+              <th>Data di Arrivo</th>
+              <th>Data di Partenza</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {selectedArrivalDate && selectedArrivalDate.toDateString()}
+              </td>
+              <td>
+                {selectedDepartureDate && selectedDepartureDate.toDateString()}
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
+    </Container>
   );
 };
 
