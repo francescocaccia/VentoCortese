@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Row,
@@ -13,8 +13,8 @@ import { GiShoppingCart } from "react-icons/gi";
 import { IoIosClose } from "react-icons/io";
 import { connect } from "react-redux";
 import { addToCart } from "../Redux/action";
-
-// ... il tuo componente Shop
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const mieleries = [
   {
@@ -85,7 +85,11 @@ const Shop = ({ addToCart }) => {
     setCurrentMielery(null);
     setShowModal(false);
   };
-
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Durata dell'animazione in millisecondi
+    });
+  }, []);
   return (
     <>
       <Container>
@@ -127,7 +131,7 @@ const Shop = ({ addToCart }) => {
         <Row className="my-4">
           {mieleries.map((mielery, index) => (
             <Col md={3} key={index} onClick={() => handleCardClick(mielery)}>
-              <Card className="mb-3">
+              <Card className="mb-3" data-aos="zoom-in-up">
                 <Card.Img
                   variant="top"
                   src={mielery.imageUrl}

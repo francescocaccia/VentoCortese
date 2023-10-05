@@ -1,6 +1,8 @@
 // Azioni (action.js)
 export const SET_PRENOTAZIONI = "SET_PRENOTAZIONI";
 export const FETCH_PRENOTAZIONI_ERROR = "FETCH_PRENOTAZIONI_ERROR";
+export const REMOVE_FROM_CART = "FETCH_PRENOTAZIONI_ERROR";
+export const ADD_TO_CART = "FETCH_PRENOTAZIONI_ERROR";
 
 export const addToCart = (item) => {
   return {
@@ -11,7 +13,7 @@ export const addToCart = (item) => {
 
 export const removeFromCart = (itemId) => {
   return {
-    type: "REMOVE_FROM_CART", // Assicurati che il tipo corrisponda qui
+    type: "REMOVE_FROM_CART",
     payload: itemId,
   };
 };

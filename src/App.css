@@ -185,6 +185,19 @@ h2 {
   height: 100%;
   object-fit: cover;
 }
+/* MAPPA PIE DI PAGINA+++++++++ +DGQERAFGH+WRTGH+GSF+HNJ+ETY+H */
+.custom-map-container {
+  border: 4px solid rgb(207, 185, 160); /* Colore blu di Bootstrap */
+  border-radius: 5px;
+  overflow: hidden; /* Assicura che la mappa rispetti il bordo arrotondato */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.custom-icon {
+  background-size: cover;
+  border: 3px solid rgb(235, 21, 110); /* Bordo rosso */
+  border-radius: 50% 50% 50% 0; /* Rende la parte superiore circolare e la parte inferiore piatta */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Aggiunge un'ombra leggera */
+}
 
 /* roooooommmmmmmmmm */
 /* LISTINO PREZZI  PAGINA ROOM */

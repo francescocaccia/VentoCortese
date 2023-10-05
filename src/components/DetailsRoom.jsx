@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPrenotazioni, fetchPrenotazioniError } from "../Redux/action";
 import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import CalendarComponent from "./CalendarComponent";
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 const DetailsRoom = ({ apartments, userID }) => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -15,10 +14,6 @@ const DetailsRoom = ({ apartments, userID }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      AOS.init({
-        duration: 2000, // Durata dell'animazione
-        once: false,
-      });
       try {
         const response = await fetch(
           `http://localhost:8080/prenotazioni/${id}`
@@ -74,28 +69,24 @@ const DetailsRoom = ({ apartments, userID }) => {
           </Card>
         </Col>
         <Col>
-          <Carousel className="custom-carousel">
-            {Object.entries(apartment.immagini[0])
-              .filter(
-                ([, imageUrl]) =>
-                  typeof imageUrl === "string" && imageUrl.trim() !== ""
-              )
-              .map(([key, imageUrl], idx) => (
-                <div
-                  key={idx}
-                  data-aos="fade-up"
-                  data-aos-delay={`${baseDelay * 100}`}
-                >
-                  <Carousel.Item className="custom-carousel-item">
+          <div data-aos="fade-down-left">
+            <Carousel className="custom-carousel">
+              {Object.entries(apartment.immagini[0])
+                .filter(
+                  ([, imageUrl]) =>
+                    typeof imageUrl === "string" && imageUrl.trim() !== ""
+                )
+                .map(([key, imageUrl], idx) => (
+                  <Carousel.Item key={idx} className="custom-carousel-item">
                     <img
                       className="d-block w-100 custom-carousel-img"
                       src={imageUrl}
                       alt={`Immagine ${idx + 1} di ${apartment.nome}`}
                     />
                   </Carousel.Item>
-                </div>
-              ))}
-          </Carousel>
+                ))}
+            </Carousel>
+          </div>
         </Col>
       </Row>
       <hr />

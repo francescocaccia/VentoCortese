@@ -1,7 +1,16 @@
 import { connect } from "react-redux";
-import React from "react";
+import React, { useEffect } from "react";
 import { removeFromCart } from "../Redux/action";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Button } from "react-bootstrap";
+
 const Cart = ({ cartItems, removeItem }) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Durata dell'animazione in millisecondi
+    });
+  }, []);
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
   };
@@ -24,28 +33,36 @@ const Cart = ({ cartItems, removeItem }) => {
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
                 <p className="price">Prezzo: ${item.price}</p>
-                <button
+                <Button
                   className="remove-button"
                   onClick={() => {
-                    if (cartItems.some((cartItem) => cartItem.id === item.id)) {
-                      removeItem(item.id);
+                    if (
+                      window.confirm(
+                        "Sei sicuro di voler rimuovere questo articolo dal carrello?"
+                      )
+                    ) {
+                      if (
+                        cartItems.some((cartItem) => cartItem.id === item.id)
+                      ) {
+                        removeItem(item.id);
+                      }
                     }
                   }}
                 >
                   Rimuovi
-                </button>
+                </Button>
               </div>
             </div>
           ))}
           <div className="cart-summary">
             <h4>Importo totale: ${getTotalPrice()}</h4>
 
-            <button
+            <Button
               className="checkout-button"
               onClick={() => console.log("Vai al pagamento")}
             >
               Vai al pagamento
-            </button>
+            </Button>
           </div>
         </>
       )}

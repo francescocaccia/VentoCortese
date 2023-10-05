@@ -7,6 +7,7 @@ import logo from "../logoColleponi.png";
 import VideoSfondo from "../VideoSfondo.mp4";
 import { Button, Container } from "react-bootstrap";
 import BoxLayout from "./BoxLayout";
+import Mapp from "./Mapp";
 const HomePage = () => {
   return (
     <>
@@ -129,6 +130,12 @@ const HomePage = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      <Container className="mt-5">
+        <h3 className="text-center mb-3">Dove siamo</h3>
+        <div className="custom-map-container">
+          <Mapp lat={43.4373176} lng={12.9091765} />
+        </div>
+      </Container>
     </>
   );
 };

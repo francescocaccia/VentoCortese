@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./index.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/NavBar";
 import HomePage from "./components/HomePage";
@@ -14,8 +16,8 @@ import DetailsRoom from "./components/DetailsRoom";
 import Register from "./components/Register";
 import { useDispatch } from "react-redux";
 import Login from "./components/Login";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import Mapp from "./components/Mapp";
+
 function App() {
   const [userID, setUserID] = useState("");
   const [apartments, setApartments] = useState([]);
@@ -69,6 +71,10 @@ function App() {
             element={<Register setUserID={updateUserID} />}
           />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/mapp"
+            element={<Mapp lat={43.4373176} lng={12.9091765} />}
+          />
         </Routes>
         <Footer />
       </BrowserRouter>
