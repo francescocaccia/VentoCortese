@@ -6,6 +6,7 @@ import grotte from "../grotte.png";
 import logo from "../logoColleponi.png";
 import VideoSfondo from "../VideoSfondo.mp4";
 import { Button, Container } from "react-bootstrap";
+import BoxLayout from "./BoxLayout";
 const HomePage = () => {
   return (
     <>
@@ -89,6 +90,8 @@ const HomePage = () => {
             />
           </div>
         </div>
+
+        <BoxLayout />
       </Container>
       <h2 className="text-center mt-3">
         C'è un modo ricco di cultura intorno a noi da poter visitare in pieno

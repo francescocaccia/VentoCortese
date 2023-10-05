@@ -70,6 +70,106 @@ h2 {
   filter: drop-shadow(0px 0px 10px rgba(207, 185, 160, 1));
 } */
 
+/* src/components/BoxLayout.css */
+
+/* Stili generali per il contenitore delle immagini */
+
+/* Specifiche colorazioni per ogni colonna */
+.rectangle-image {
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
+}
+.box-container {
+  background-color: #e6dce6; /* Violetto pastello leggero */
+}
+
+.color-1,
+.color-2,
+.color-3,
+.color-4,
+.color-5 {
+  width: 220px;
+  height: 520px;
+  background-color: #6b8e23; /* Questo sarà sovrascritto dalle classi successive */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+@media (max-width: 768px) {
+  .color-1,
+  .color-2,
+  .color-3,
+  .color-4,
+  .color-5 {
+    height: 300px; /* Riduci l'altezza per schermi di medie dimensioni */
+  }
+}
+
+/* Media query per schermi con larghezza massima di 480px (es. smartphone) */
+@media (max-width: 480px) {
+  .color-1,
+  .color-2,
+  .color-3,
+  .color-4,
+  .color-5 {
+    height: 220px; /* Riduci ulteriormente l'altezza per schermi piccoli */
+  }
+}
+/* Colori pastello leggeri e meno saturi per un'atmosfera raffinata */
+.color-1 {
+  background-color: #a9c5a9; /* Verde pallido */
+}
+.color-2 {
+  background-color: #a9bfc5; /* Blu-grigio pallido */
+}
+.color-3 {
+  background-color: #c5a9ab; /* Rosso-terra pallido */
+}
+.color-4 {
+  background-color: #c5c2a9; /* Verde-oliva pallido */
+}
+.color-5 {
+  background-color: #c5b3a9; /* Beige pallido */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  padding: 20px;
+}
+
+/* Effetto sfalsato */
+.color-1:hover {
+  transform: translateY(-10px);
+}
+.color-2:hover {
+  transform: translateY(-8px);
+}
+.color-3:hover {
+  transform: translateY(-6px);
+}
+.color-4:hover {
+  transform: translateY(-4px);
+}
+.color-5:hover {
+  transform: translateY(-2px);
+}
+
+/* Ombra per effetto "elevazione" */
+.color-1:hover,
+.color-2:hover,
+.color-3:hover,
+.color-4:hover,
+.color-5:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* FINEEEE */
 /*caroselli*/
 
 /* Per gli appartamenti */
