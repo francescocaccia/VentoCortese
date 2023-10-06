@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
-import Carousel from "react-bootstrap/Carousel";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../logoColleponi.png";
-import { FaCheck } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
+import { IoIosPeople } from "react-icons/io";
+import { HiOutlineArrowsExpand } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import Slideshow from "./Slideshow";
 const Room = () => {
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -51,155 +52,95 @@ const Room = () => {
   }
 
   return (
-    <Container>
-      <div className="d-flex flex-column justify-content-center align-items-center">
-        <img
-          className="img-with-shadow mt-4"
-          src={logo}
-          alt="logo"
-          width={210}
-          height={210}
-        />
-        <div>
-          <h3>I nostri appartamentini...</h3>
-        </div>
-      </div>
+    <>
+      <Slideshow />
 
-      <div className="price-list mb-5">
-        <h3 className="text-center mt-5">Listino Prezzi</h3>
-        <div className="price-item">
-          <h4>Camera Singola</h4>
-          <p>Prezzo a notte: $100</p>
-        </div>
-        <div className="price-item">
-          <h4>Camera Doppia</h4>
-          <p>Prezzo a notte: $150</p>
-        </div>
-        <div className="price-item">
-          <h4>Suite Deluxe</h4>
-          <p>Prezzo a notte: $250</p>
-        </div>
-      </div>
+      {/* <div className="d-flex flex-column justify-content-center align-items-center">
+          <img
+            className="img-with-shadow mt-4"
+            src={logo}
+            alt="logo"
+            width={210}
+            height={210}
+          />
+          <div>
+            <h3>I nostri appartamentini...</h3>
+          </div>
+        </div> */}
 
-      <Row className="custom-card-row">
-        {apartments.slice(0, 4).map((apartment, index) => (
-          <Col md={6} key={index} className="custom-card-col">
-            <Link
-              to={`/room/${apartment.idAppartamentino}`}
-              className="text-decoration-none text-dark"
-            >
-              <Card
-                className="custom-card border-0"
-                data-aos="flip-left"
-                data-aos-easing="ease-out-cubic"
-                data-aos-duration="2000"
-                data-aos-delay={`${index * 200}`} // Puoi regolare il delay in base alle tue esigenze
-              >
-                <Carousel className="custom-carousel">
-                  {Object.entries(apartment.immagini[0])
-                    .filter(
-                      ([, imageUrl]) =>
-                        typeof imageUrl === "string" && imageUrl.trim() !== ""
-                    )
-                    .map(([key, imageUrl], idx) => (
-                      <Carousel.Item key={idx} className="custom-carousel-item">
-                        <img
-                          className="d-block w-100 custom-carousel-img"
-                          src={imageUrl}
-                          alt={`Immagine ${idx + 1} di ${apartment.nome}`}
-                        />
-                      </Carousel.Item>
-                    ))}
-                </Carousel>
-
-                <Card.Body className="custom-card-body bg-light">
-                  <Card.Title className="custom-card-title font-weight-bold">
-                    {apartment.nome}
-                  </Card.Title>
-                  <Card.Text className="custom-card-text">
-                    {apartment.descrizione}
-                  </Card.Text>
-                </Card.Body>
-                <Card.Footer className="custom-card-footer bg-light">
-                  <div className="d-flex flex-column">
-                    <small className="text-muted custom-card-footer-text">
-                      Camere: {apartment.numeroDiCamere}
-                    </small>
-                    <small className="text-muted custom-card-footer-text mt-2">
-                      Disponibilità:
-                      {apartment.disponibilita ? (
-                        <FaCheck className="ms-2 text-success" />
-                      ) : (
-                        <ImCross className="ms-2 text-danger bold" />
-                      )}
-                    </small>
-                  </div>
-                </Card.Footer>
-              </Card>
-            </Link>
-          </Col>
-        ))}
-      </Row>
-
-      {apartments[4] && (
+      {/* <div className="price-list mb-5">
+          <h3 className="text-center mt-5">Listino Prezzi</h3>
+          <div className="price-item">
+            <h4>Camera Singola</h4>
+            <p>Prezzo a notte: $100</p>
+          </div>
+          <div className="price-item">
+            <h4>Camera Doppia</h4>
+            <p>Prezzo a notte: $150</p>
+          </div>
+          <div className="price-item">
+            <h4>Suite Deluxe</h4>
+            <p>Prezzo a notte: $250</p>
+          </div>
+        </div> */}
+      <Container>
         <Row className="custom-card-row">
-          <Col md={12} className="custom-card-col">
-            <Link
-              to={`/room/${apartments[4].idAppartamentino}`}
-              className="text-decoration-none text-dark"
-            >
-              <div data-aos="fade-up" data-aos-anchor-placement="center-bottom">
-                <Card className="custom-card border-0 last-card">
-                  <Carousel className="custom-carousel last-carousel">
-                    {Object.entries(apartments[4].immagini[0])
-                      .filter(
+          {apartments.map((apartment, index) => (
+            <Col key={index} className="custom-card-col">
+              <Link
+                to={`/room/${apartment.idAppartamentino}`}
+                className="text-decoration-none text-dark"
+              >
+                <Card
+                  className="room-elegant-card border-0"
+                  style={{ borderRadius: "0" }}
+                >
+                  {/* Mostra la prima immagine di ogni appartamento */}
+                  <Card.Img
+                    variant="top"
+                    src={
+                      Object.entries(apartment.immagini[0]).filter(
                         ([, imageUrl]) =>
                           typeof imageUrl === "string" && imageUrl.trim() !== ""
-                      )
-                      .map(([key, imageUrl], idx) => (
-                        <Carousel.Item
-                          key={idx}
-                          className="custom-carousel-item"
-                        >
-                          <img
-                            className="d-block w-100 custom-carousel-img"
-                            src={imageUrl}
-                            alt={`Immagine ${idx + 1} di ${apartments[4].nome}`}
-                          />
-                        </Carousel.Item>
-                      ))}
-                  </Carousel>
-
-                  <Card.Body className="custom-card-body bg-light">
-                    <Card.Title className="custom-card-title font-weight-bold">
-                      {apartments[4].nome}
+                      )[0][1] // Accedi al primo URL
+                    }
+                    alt={apartment.nome}
+                    className="room-elegant-card-image"
+                  />
+                  <div className="room-specific-people-count">
+                    <span>
+                      <IoIosPeople className="fs-4 size-bold" />
+                      Max People: {apartment.capienzaMassima}
+                    </span>
+                    <span>
+                      <HiOutlineArrowsExpand className="fs-5" />
+                      Metri m²: {apartment.metriQuadri}
+                    </span>
+                  </div>
+                  <Card.Body className="room-elegant-card-body">
+                    <Card.Title className="text-center font-weight-bold">
+                      <span>{apartment.nome}</span>
                     </Card.Title>
-                    <Card.Text className="custom-card-text">
-                      {apartments[4].descrizione}
+                    <Card.Text>
+                      <span>
+                        {apartment.descrizione}fare attenzione al css
+                        descrizione breve
+                      </span>
                     </Card.Text>
+                    <Button
+                      className="specific-cta-button btn-dark w-100"
+                      style={{ borderRadius: "0" }}
+                    >
+                      <span> BOOK NOW FOR: {apartment.tariffa}€</span>
+                    </Button>
                   </Card.Body>
-                  <Card.Footer className="custom-card-footer bg-light">
-                    <div className="d-flex flex-column">
-                      <small className="text-muted custom-card-footer-text">
-                        Camere: {apartments[4].numeroDiCamere}
-                      </small>
-                      <small className="text-muted custom-card-footer-text mt-2">
-                        Disponibilità:
-                        {apartments[4].disponibilita ? (
-                          <FaCheck className="ms-2 text-success" />
-                        ) : (
-                          <ImCross className="ms-2 text-danger bold" />
-                        )}
-                      </small>
-                    </div>
-                  </Card.Footer>
                 </Card>
-              </div>
-            </Link>
-          </Col>
+              </Link>
+            </Col>
+          ))}
         </Row>
-      )}
-    </Container>
+      </Container>
+    </>
   );
 };
 

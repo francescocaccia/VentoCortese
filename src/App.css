@@ -1,10 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
+
 p,
+span,
 h1,
 h3,
 h2 {
-  font-family: "Indie Flower", cursive;
+  font-family: "Playfair Display", serif;
 }
+
 .navbar {
   background-color: rgba(
     255,
@@ -200,7 +203,7 @@ h2 {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Aggiunge un'ombra leggera */
 }
 
-/* roooooommmmmmmmmm */
+/* roooooommmmmmmmmm+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* LISTINO PREZZI  PAGINA ROOM */
 /* Listino Prezzi */
 .price-list {
@@ -301,6 +304,40 @@ h2 {
 .last-carousel-img {
   object-fit: cover;
 }
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* card room appartamentini refactor*/
+/* card room appartamentini refactor */
+.room-elegant-card {
+  margin: 20px 0;
+  overflow: hidden;
+  position: relative; /* Permette di posizionare il rettangolo del numero di persone */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.room-elegant-card :hover {
+  background-color: rgb(207, 185, 160);
+  color: white;
+}
+.room-elegant-card-image {
+  height: 200px;
+  object-fit: cover;
+  position: relative;
+}
+
+.room-specific-people-count {
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -600%);
+  background-color: rgb(207, 185, 160);
+  color: white;
+  padding: 5px 10px; /* Regola il padding per dare più spazio al testo */
+  font-size: 12px; /* Riduci leggermente la dimensione del font */
+  z-index: 0;
+  border-radius: 0; /* Rimuovi gli angoli arrotondati */
+  white-space: nowrap; /* Impedisci al testo di andare a capo */
+  text-align: center; /* Centra il testo orizzontalmente */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 /* footerrrr */
 .footer {
@@ -310,7 +347,7 @@ h2 {
 /* Shop */
 
 /* Card */
-.card {
+/* .card {
   transition: transform 0.3s;
 }
 
@@ -326,7 +363,7 @@ h2 {
 .card:hover {
   transform: scale(1.1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-}
+} */
 
 /* icone */
 /* Stile di base per le icone */
@@ -435,4 +472,94 @@ h2 {
 .paypal-description {
   margin-bottom: 2rem;
   text-align: center;
+}
+
+/* SLIDE SHOW */
+
+/* Stili per lo slideshow */
+.slideshow {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background-image 1s ease-in-out;
+  opacity: 0.8;
+}
+
+/* Aggiunge un effetto di opacità alle immagini di sfondo */
+.slideshow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Nero con 50% di opacità */
+  z-index: 1;
+}
+
+/* Stili per il testo sovrapposto */
+.text-over-image {
+  z-index: 2;
+  color: white;
+  font-size: 2em;
+  position: relative;
+}
+
+/* USER PROFILE */
+.profile-container {
+  font-family: "Arial", sans-serif;
+}
+
+.profile-card {
+  background-color: #f5f5f5;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  margin-top: -75px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 5px solid white;
+}
+
+.profile-name {
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.profile-email {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.bookings-card {
+  border-radius: 10px;
+}
+
+.bookings-header {
+  background-color: #007bff;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px 10px 0 0;
+}
+
+.booking-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 10px;
 }

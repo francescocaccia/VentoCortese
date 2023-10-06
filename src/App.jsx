@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import Login from "./components/Login";
 import Mapp from "./components/Mapp";
 import PayPalCheckOutPage from "./components/PayPalCheckOutPage";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const [userID, setUserID] = useState("");
@@ -53,6 +54,8 @@ function App() {
     localStorage.setItem("userID", id); // salva l'userID nel localStorage
   };
 
+  //prova di carosello
+
   return (
     <>
       <BrowserRouter>
@@ -77,6 +80,7 @@ function App() {
             element={<Mapp lat={43.4373176} lng={12.9091765} />}
           />
           <Route path="/checkout" element={<PayPalCheckOutPage />} />
+          <Route path="/userProfile" element={<UserProfile />} />
         </Routes>
         <Footer />
       </BrowserRouter>

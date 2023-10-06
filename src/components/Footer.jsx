@@ -69,32 +69,36 @@ const Footer = () => {
                   </li>
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
-                      Food and Wine
+                      <p className="m-0">Food and Wine</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
-                      Media Center
+                      <p className="m-0"> Media Center</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
-                      Privacy
+                      <p className="m-0">Privacy</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
-                      Contact Us
+                      <p className="m-0">Contact Us</p>
                     </a>
                   </li>
                   <li className="nav-item mt-2">
                     <button className="btn btn-outline-secondary">
-                      Service Code
+                      <p className="m-0">Service Code</p>
                     </button>
                   </li>
                   <li className="nav-item mt-2">
                     <a className="nav-link text-muted" href="/">
-                      © 1997-2023 VentoCortese Inc <GiItalia className="fs-3" />
+                      <span className="m-0">© 1997-2023 VentoCortese Inc</span>{" "}
+                      <p className="m-0">
+                        Italian do it Better...
+                        <GiItalia className="fs-3" />
+                      </p>
                     </a>
                   </li>
                 </ul>
@@ -103,17 +107,37 @@ const Footer = () => {
                 <ul className="navbar-nav">
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
-                      Restaurant Description
+                      <p className="m-0">Restaurant Description</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
-                      Investor Relations
+                      <p className="m-0">Investor Relations</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
-                      Legal Notices
+                      <p className="m-0">Legal Notices</p>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-md-3">
+                <ul className="navbar-nav">
+                  .
+                  <li className="nav-item">
+                    <a className="nav-link text-muted" href="/">
+                      <p className="m-0">Help Center</p>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link text-muted" href="/">
+                      <p className="m-0">Jobs</p>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link text-muted" href="/">
+                      <p className="m-0">Cookie Preferences</p>
                     </a>
                   </li>
                 </ul>
@@ -122,36 +146,17 @@ const Footer = () => {
                 <ul className="navbar-nav">
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
-                      Help Center
+                      <p className="m-0">Gift Cards</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
-                      Jobs
+                      <p className="m-0">Terms Of Use</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
-                      Cookie Preferences
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-3">
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <a className="nav-link text-muted" href="/">
-                      Gift Cards
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link text-muted" href="/">
-                      Terms Of Use
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link text-muted" href="/">
-                      Corporate Information
+                      <p className="m-0">Corporate Information</p>
                     </a>
                   </li>
                 </ul>
