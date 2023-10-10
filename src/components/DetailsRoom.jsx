@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setPrenotazioni, fetchPrenotazioniError } from "../Redux/action";
-import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
+import { Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import CalendarComponent from "./CalendarComponent";
 
 const DetailsRoom = ({ apartments, userID }) => {
   const { id } = useParams();
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const prenotazioni = useSelector((state) => state.prenotazioni);
@@ -34,13 +34,47 @@ const DetailsRoom = ({ apartments, userID }) => {
   );
 
   if (!apartment) {
-    return <div>Appartamento non trovato</div>;
+    return (
+      <div className="text-center mt-3">
+        <h3>Appartamento non trovato</h3>
+      </div>
+    );
   }
 
   return (
     <Container className="mt-5">
       <Row>
         <Col md={6}>
+          <div data-aos="fade-down-left">
+            <Carousel className="custom-carousel d-flex flex-column">
+              {Object.entries(apartment.immagini[0])
+                .filter(
+                  ([, imageUrl]) =>
+                    typeof imageUrl === "string" && imageUrl.trim() !== ""
+                )
+                .map(([key, imageUrl], idx) => (
+                  <Carousel.Item key={idx} className="custom-carousel-item">
+                    <img
+                      className="d-block w-100 custom-carousel-img"
+                      src={imageUrl}
+                      alt={`Immagine ${idx + 1} di ${apartment.nome}`}
+                    />
+                  </Carousel.Item>
+                ))}
+            </Carousel>
+          </div>
+        </Col>
+
+        <Col md={6}>
+          <CalendarComponent
+            id={id}
+            prenotazioni={prenotazioni}
+            idCliente={userID}
+            tariffa={apartment.tariffa}
+          />
+        </Col>
+
+        <Col className="mt-3" md={12}>
           <Card>
             <Card.Body>
               <Card.Title className="font-weight-bold">
@@ -68,37 +102,8 @@ const DetailsRoom = ({ apartments, userID }) => {
             </Card.Footer>
           </Card>
         </Col>
-        <Col md={6}>
-          <div data-aos="fade-down-left">
-            <Carousel className="custom-carousel d-flex flex-column">
-              {Object.entries(apartment.immagini[0])
-                .filter(
-                  ([, imageUrl]) =>
-                    typeof imageUrl === "string" && imageUrl.trim() !== ""
-                )
-                .map(([key, imageUrl], idx) => (
-                  <Carousel.Item key={idx} className="custom-carousel-item">
-                    <img
-                      className="d-block w-100 custom-carousel-img"
-                      src={imageUrl}
-                      alt={`Immagine ${idx + 1} di ${apartment.nome}`}
-                    />
-                  </Carousel.Item>
-                ))}
-            </Carousel>
-          </div>
-        </Col>
       </Row>
       <hr />
-      <Row className="mt-4">
-        <Col md={12}>
-          <CalendarComponent
-            id={id}
-            prenotazioni={prenotazioni}
-            idCliente={userID}
-          />
-        </Col>
-      </Row>
     </Container>
   );
 };

@@ -16,8 +16,9 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const [userDetails, setUserDetails] = useState({});
   const [bookings, setBookings] = useState([]);
-  const [showModal, setShowModal] = useState(false); // per mostrare/nascondere il modal di modifica
+  const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
+  const userID = localStorage.getItem("userID");
 
   useEffect(() => {
     fetchUserDetails();
@@ -25,9 +26,15 @@ const UserProfile = () => {
   }, []);
 
   const fetchUserDetails = async () => {
+    const token = localStorage.getItem("authToken");
+
+    if (!token) {
+      handleLogout();
+      return;
+    }
+
     try {
-      const token = localStorage.getItem("authToken");
-      const response = await fetch("http://localhost:8080/clienti/3", {
+      const response = await fetch(`http://localhost:8080/clienti/${userID}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -46,23 +53,51 @@ const UserProfile = () => {
       }
     } catch (error) {
       console.error("Errore:", error);
+      handleLogout();
     }
   };
 
   const fetchUserBookings = async () => {
-    // Qui potresti effettuare una chiamata API per ottenere le prenotazioni dell'utente.
-    // Sto usando dati fittizi per questa demo.
-    setBookings([
-      { id: 1, data: "2023-10-10", descrizione: "Prenotazione 1" },
-      { id: 2, data: "2023-11-10", descrizione: "Prenotazione 2" },
-    ]);
+    const token = localStorage.getItem("authToken");
+
+    if (!token) {
+      handleLogout();
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/prenotazioni/${userID}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setBookings(data);
+      } else {
+        const errorMessage = await response.text();
+        throw new Error(
+          `Errore nel recupero delle prenotazioni: ${errorMessage}`
+        );
+      }
+    } catch (error) {
+      console.error("Errore:", error);
+      handleLogout();
+    }
   };
 
   const handleLogout = () => {
-    // Qui potresti effettuare le azioni di logout, come rimuovere i token da localStorage.
     localStorage.removeItem("authToken");
     localStorage.removeItem("userID");
-    // ... altre azioni come reindirizzare l'utente alla pagina di login o aggiornare lo stato Redux.
+    // Qui puoi anche reindirizzare l'utente alla pagina di login o aggiornare lo stato Redux, se necessario.
+    // ad esempio:
+    // window.location.href = '/login';
   };
 
   return (
@@ -99,7 +134,9 @@ const UserProfile = () => {
             <ListGroup variant="flush">
               {bookings.map((booking) => (
                 <ListGroup.Item key={booking.id} className="booking-item">
-                  {booking.descrizione} - {booking.data}
+                  {booking.descrizione} - Dal {booking.dataInizio} al{" "}
+                  {booking.dataFine}(
+                  {daysBetween(booking.dataInizio, booking.dataFine)} giorni)
                   <div className="booking-actions">
                     <Button variant="outline-warning">Modifica</Button>
                     <Button variant="outline-danger">Elimina</Button>

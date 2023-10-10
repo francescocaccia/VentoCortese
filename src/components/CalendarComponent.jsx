@@ -2,27 +2,32 @@ import React, { useEffect, useState } from "react";
 import { DatePicker } from "react-rainbow-components";
 import { Table, Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { setBookingData } from "../Redux/action";
+import { useDispatch } from "react-redux";
 
-const CalendarComponent = ({ id }) => {
+const CalendarComponent = ({ id, tariffa }) => {
   const [selectedArrivalDate, setSelectedArrivalDate] = useState(null);
   const [selectedDepartureDate, setSelectedDepartureDate] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleArrivalDateChange = (date) => {
     setSelectedArrivalDate(date);
   };
-
-  useEffect(() => {
-    console.log(localStorage.getItem("userID"));
-  }, []);
 
   const handleDepartureDateChange = (date) => {
     setSelectedDepartureDate(date);
   };
 
-  const handleBooking = async () => {
+  const getDaysDifference = (start, end) => {
+    const oneDay = 24 * 60 * 60 * 1000; // ore*minuti*secondi*millisecondi
+    return Math.ceil((end.getTime() - start.getTime()) / oneDay);
+  };
+
+  const handleBooking = () => {
     if (!localStorage.getItem("userID")) {
       alert("Per favore, registrati o esegui il login per prenotare.");
-      navigate("/register");
+      navigate("/login");
       return;
     }
 
@@ -32,55 +37,43 @@ const CalendarComponent = ({ id }) => {
       );
       return;
     }
-    // Chiedi conferma all'utente
+
     const isConfirmed = window.confirm(
-      "Sei sicuro di voler prenotare l'appartamento?"
+      "Sei sicuro di voler procedere con la prenotazione?"
     );
     if (!isConfirmed) {
-      return; // Se l'utente non conferma, interrompe l'operazione.
+      return;
     }
 
     const formatDate = (date) => {
-      return `${("0" + date.getDate()).slice(-2)}/${(
-        "0" +
-        (date.getMonth() + 1)
-      ).slice(-2)}/${date.getFullYear()}`;
+      return `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(
+        -2
+      )}-${("0" + date.getDate()).slice(-2)}`;
     };
+
+    const totalDays = getDaysDifference(
+      selectedArrivalDate,
+      selectedDepartureDate
+    );
 
     const bookingData = {
       dataInizio: formatDate(selectedArrivalDate),
       dataFine: formatDate(selectedDepartureDate),
       idCliente: localStorage.getItem("userID"),
       idAppartamentino: parseInt(id),
-      confermata: true,
-      importoTotale: 200.0,
+      confermata: false,
+      giorniTotali: totalDays,
+      tariffa: tariffa,
     };
 
-    try {
-      const response = await fetch("http://localhost:8080/prenotazioni/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-        },
-        body: JSON.stringify(bookingData),
-      });
-
-      const responseData = await response.json(); // supponendo che il backend risponda con JSON
-
-      if (!response.ok) {
-        // Se il backend invia un messaggio di errore, mostralo. Altrimenti, mostra un errore generico.
-        throw new Error(
-          responseData.message || "Errore durante la prenotazione"
-        );
-      }
-      alert("Prenotazione effettuata con successo");
-      console.log("Prenotazione effettuata con successo");
-    } catch (error) {
-      alert(error.message); // Mostra il messaggio di errore in un alert
-      console.error("Errore durante la prenotazione:", error);
-    }
+    dispatch(setBookingData(bookingData));
+    navigate("/summaryPage");
   };
+
+  useEffect(() => {
+    console.log(localStorage.getItem("userID"));
+  }, []);
+
   return (
     <Container>
       <div className="container mt-5">
@@ -109,28 +102,30 @@ const CalendarComponent = ({ id }) => {
             Prenota
           </Button>
         </div>
-
-        <Table striped bordered hover className="mt-4">
-          <thead>
-            <tr>
-              <th>Data di Arrivo</th>
-              <th>Data di Partenza</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                {selectedArrivalDate && selectedArrivalDate.toDateString()}
-              </td>
-              <td>
-                {selectedDepartureDate && selectedDepartureDate.toDateString()}
-              </td>
-            </tr>
-          </tbody>
-        </Table>
       </div>
     </Container>
   );
 };
 
 export default CalendarComponent;
+
+{
+  /* <Table striped bordered hover className="mt-4">
+<thead>
+  <tr>
+    <th>Data di Arrivo</th>
+    <th>Data di Partenza</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+      {selectedArrivalDate && selectedArrivalDate.toDateString()}
+    </td>
+    <td>
+      {selectedDepartureDate && selectedDepartureDate.toDateString()}
+    </td>
+  </tr>
+</tbody>
+</Table> */
+}

@@ -96,7 +96,7 @@ const Footer = () => {
                     <a className="nav-link text-muted" href="/">
                       <span className="m-0">© 1997-2023 VentoCortese Inc</span>{" "}
                       <p className="m-0">
-                        Italian do it Better...
+                        Italians do it Better...
                         <GiItalia className="fs-3" />
                       </p>
                     </a>
@@ -124,7 +124,6 @@ const Footer = () => {
               </div>
               <div className="col-md-3">
                 <ul className="navbar-nav">
-                  .
                   <li className="nav-item">
                     <a className="nav-link text-muted" href="/">
                       <p className="m-0">Help Center</p>

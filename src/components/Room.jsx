@@ -55,34 +55,38 @@ const Room = () => {
     <>
       <Slideshow />
 
-      {/* <div className="d-flex flex-column justify-content-center align-items-center">
-          <img
-            className="img-with-shadow mt-4"
-            src={logo}
-            alt="logo"
-            width={210}
-            height={210}
-          />
-          <div>
-            <h3>I nostri appartamentini...</h3>
-          </div>
-        </div> */}
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        <img
+          className="img-with-shadow mt-4"
+          src={logo}
+          alt="logo"
+          width={210}
+          height={210}
+        />
+        <div>
+          <h3>I nostri appartamentini...</h3>
+        </div>
+      </div>
 
-      {/* <div className="price-list mb-5">
-          <h3 className="text-center mt-5">Listino Prezzi</h3>
-          <div className="price-item">
-            <h4>Camera Singola</h4>
-            <p>Prezzo a notte: $100</p>
-          </div>
-          <div className="price-item">
-            <h4>Camera Doppia</h4>
-            <p>Prezzo a notte: $150</p>
-          </div>
-          <div className="price-item">
-            <h4>Suite Deluxe</h4>
-            <p>Prezzo a notte: $250</p>
-          </div>
-        </div> */}
+      <div className="price-list mb-5">
+        <h3>
+          🌳 Ulivo: Lasciati avvolgere dalla serenità e dal fascino millenario
+          dell'ulivo. Una stanza che ricorda le dolci colline e la tradizione
+          del nostro territorio. <br />
+          🌲 Pino: Respira l'aria fresca e rigenerante delle montagne, avvolto
+          dal profumo inconfondibile del pino. Un tuffo nel cuore verde
+          dell'Appennino.
+          <br /> 🍃 Menta: Una boccata di freschezza ti accoglie in questa
+          stanza, ispirata alla vivacità e alla spensieratezza della menta.{" "}
+          <br />
+          🌱 Rosmarino: Lasciati stimolare dai profumi intensi del rosmarino,
+          simbolo della nostra terra e del Mediterraneo. Una stanza che
+          risveglia i sensi e rinvigorisce lo spirito. <br />
+          🌼 Ginestra: Luminosa e accogliente come i fiori gialli della ginestra
+          che punteggiano le nostre colline. Un simbolo di calore e di gioia,
+          perfetto per completare la tua oasi naturale.
+        </h3>
+      </div>
       <Container>
         <Row className="custom-card-row">
           {apartments.map((apartment, index) => (
