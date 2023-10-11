@@ -10,6 +10,7 @@ const initialState = {
   error: null,
   bookingData: null,
   totalAmount: 0,
+  currentUser: null,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -36,6 +37,17 @@ const Reducer = (state = initialState, action) => {
     case "SET_TOTAL_ORDER":
       return { ...state, totalAmount: action.payload };
 
+    case "USER_LOGOUT":
+      return {
+        ...state,
+        currentUser: null,
+      };
+
+    case "SET_CURRENT_USER":
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
     default:
       return state;
   }

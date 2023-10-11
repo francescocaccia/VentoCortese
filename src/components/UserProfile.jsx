@@ -8,9 +8,10 @@ import {
   ListGroup,
   Image,
   Modal,
-  Form,
 } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../Redux/action";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,15 @@ const UserProfile = () => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
   const userID = localStorage.getItem("userID");
-
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const navigate = useNavigate();
+  const daysBetween = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const differenceInMilliseconds = end - start;
+    const days = differenceInMilliseconds / (1000 * 60 * 60 * 24);
+    return Math.floor(days);
+  };
   useEffect(() => {
     fetchUserDetails();
     fetchUserBookings();
@@ -27,11 +36,6 @@ const UserProfile = () => {
 
   const fetchUserDetails = async () => {
     const token = localStorage.getItem("authToken");
-
-    if (!token) {
-      handleLogout();
-      return;
-    }
 
     try {
       const response = await fetch(`http://localhost:8080/clienti/${userID}`, {
@@ -44,7 +48,9 @@ const UserProfile = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setUserDetails(data);
+        console.log("Dati utente:", data); // Aggiungi questo console.log
+        setUserDetails(data); // Memorizza i dettagli dell'utente nello stato
+        dispatch(setCurrentUser(data.nome));
       } else {
         const errorMessage = await response.text();
         throw new Error(
@@ -53,7 +59,7 @@ const UserProfile = () => {
       }
     } catch (error) {
       console.error("Errore:", error);
-      handleLogout();
+      setError("Errore nel recupero dei dettagli dell'utente.");
     }
   };
 
@@ -61,7 +67,9 @@ const UserProfile = () => {
     const token = localStorage.getItem("authToken");
 
     if (!token) {
-      handleLogout();
+      setError(
+        "Token non trovato. Si prega di effettuare nuovamente l'accesso."
+      );
       return;
     }
 
@@ -79,7 +87,12 @@ const UserProfile = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setBookings(data);
+
+        if (typeof data === "object" && data.idPrenotazione) {
+          setBookings([data]); // Metti l'oggetto in un array
+        } else {
+          console.error("Errore: la risposta dal server non è un array", data);
+        }
       } else {
         const errorMessage = await response.text();
         throw new Error(
@@ -88,16 +101,29 @@ const UserProfile = () => {
       }
     } catch (error) {
       console.error("Errore:", error);
-      handleLogout();
+      setError("Errore nel recupero delle prenotazioni.");
     }
   };
 
   const handleLogout = () => {
+    const confirmLogout = window.confirm(
+      "Sei sicuro di voler effettuare il logout?"
+    );
+    if (confirmLogout) {
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("userID");
+      setError("Logout effettuato");
+      dispatch({ type: "USER_LOGOUT" });
+      window.confirm("Logout effettuato con successo");
+      navigate("/");
+    }
+  };
+
+  const confirmLogout = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("userID");
-    // Qui puoi anche reindirizzare l'utente alla pagina di login o aggiornare lo stato Redux, se necessario.
-    // ad esempio:
-    // window.location.href = '/login';
+    setError("Logout effettuato");
+    setShowLogoutConfirm(false); // Chiudi il modal di conferma
   };
 
   return (
@@ -132,43 +158,22 @@ const UserProfile = () => {
               Le tue prenotazioni
             </Card.Header>
             <ListGroup variant="flush">
-              {bookings.map((booking) => (
-                <ListGroup.Item key={booking.id} className="booking-item">
-                  {booking.descrizione} - Dal {booking.dataInizio} al{" "}
-                  {booking.dataFine}(
-                  {daysBetween(booking.dataInizio, booking.dataFine)} giorni)
-                  <div className="booking-actions">
-                    <Button variant="outline-warning">Modifica</Button>
-                    <Button variant="outline-danger">Elimina</Button>
-                  </div>
-                </ListGroup.Item>
-              ))}
+              {Array.isArray(bookings) &&
+                bookings.map((booking) => (
+                  <ListGroup.Item key={booking.id} className="booking-item">
+                    {booking.descrizione} - Dal {booking.dataInizio} al{" "}
+                    {booking.dataFine}(
+                    {daysBetween(booking.dataInizio, booking.dataFine)} giorni)
+                    <div className="booking-actions">
+                      <Button variant="outline-warning">Modifica</Button>
+                      <Button variant="outline-danger">Elimina</Button>
+                    </div>
+                  </ListGroup.Item>
+                ))}
             </ListGroup>
           </Card>
         </Col>
       </Row>
-
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modifica Profilo</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group>
-              <Form.Label>Nome</Form.Label>
-              <Form.Control type="text" defaultValue={userDetails.nome} />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" defaultValue={userDetails.email} />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Salva Modifiche
-            </Button>
-          </Form>
-        </Modal.Body>
-      </Modal>
-      {error && <p style={{ color: "red" }}>{error}</p>}
     </Container>
   );
 };

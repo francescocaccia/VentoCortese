@@ -33,6 +33,7 @@ h5 {
 .navbar__links a:hover {
   color: rgb(207, 185, 160);
 }
+
 /* SPINNER CARICAMNETO */
 @keyframes spin {
   0% {

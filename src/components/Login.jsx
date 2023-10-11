@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Row, Col, Card } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { loginSuccess, setCurrentUser } from "../Redux/action";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,22 +35,30 @@ const Login = () => {
 
       if (response.ok) {
         const { token, idCliente, nome } = data;
+
+        // Salva i dati dell'utente in Redux
+        dispatch(loginSuccess({ id: idCliente, nome, email: formData.email }));
+
         localStorage.setItem("userID", idCliente);
         if (token) {
           localStorage.setItem("authToken", token);
 
           alert(`Benvenuto ${nome}! Accesso effettuato con successo.`);
+          // Dopo l'accesso dell'utente
+          const user = nome; // Può anche essere un oggetto con più dettagli sull'utente
+          dispatch(setCurrentUser(user));
 
           const redirect = new URLSearchParams(location.search).get("redirect");
           if (redirect) {
-            navigate(redirect); // Reindirizza all'URL fornito come parametro
+            navigate(redirect);
           } else {
-            navigate("/"); // O alla home se non c'è il parametro
+            navigate("/");
           }
         } else {
           alert("Token non ricevuto.");
         }
       } else {
+        dispatch(loginError(data.message || "Errore durante l'accesso.")); // Qui notifichi Redux dell'errore
         alert(data.message || "Errore durante l'accesso.");
       }
     } catch (error) {
@@ -86,6 +95,11 @@ const Login = () => {
                     required
                   />
                 </Form.Group>
+                <div className="text-center fs-5 mt-2 mb-3">
+                  <Link to="/register" className="text-decoration-none">
+                    se non sei ancora registrato clicca qui
+                  </Link>
+                </div>
                 <Button variant="primary" type="submit">
                   Accedi
                 </Button>

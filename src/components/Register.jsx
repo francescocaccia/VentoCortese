@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Row, Col, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const Register = () => {
     password: "",
   });
   const [errore, setErrore] = useState("");
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -44,6 +46,7 @@ const Register = () => {
           }
 
           alert(`Benvenuto ${nome}! Accesso effettuato con successo.`);
+          navigate("/login");
         } else {
           alert("Token non ricevuto.");
         }
@@ -74,10 +77,11 @@ const Register = () => {
         login(data.email);
       } else {
         let data = await response.json();
-        setErrore(data);
+        setErrore(data.message || "Errore durante la registrazione.");
       }
     } catch (error) {
       console.error("Si è verificato un errore:", error);
+      setErrore("Errore durante la registrazione.");
     }
   };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../logoColleponi.png";
 import { GiItalia } from "react-icons/gi";
-
+import ItalyFlag from "../ItalyFlag.png";
 const Footer = () => {
   return (
     <>
@@ -97,7 +97,14 @@ const Footer = () => {
                       <span className="m-0">© 1997-2023 VentoCortese Inc</span>{" "}
                       <p className="m-0">
                         Italians do it Better...
-                        <GiItalia className="fs-3" />
+                        <GiItalia className="fs-3 ms-1" />
+                        <img
+                          src={ItalyFlag}
+                          height={30}
+                          width={30}
+                          alt="ItalyFlag"
+                          className="ms-1"
+                        />
                       </p>
                     </a>
                   </li>

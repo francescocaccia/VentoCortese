@@ -1,10 +1,23 @@
-// Azioni (action.js)
 export const SET_PRENOTAZIONI = "SET_PRENOTAZIONI";
 export const FETCH_PRENOTAZIONI_ERROR = "FETCH_PRENOTAZIONI_ERROR";
-export const REMOVE_FROM_CART = "FETCH_PRENOTAZIONI_ERROR";
-export const ADD_TO_CART = "FETCH_PRENOTAZIONI_ERROR";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const ADD_TO_CART = "ADD_TO_CART";
 export const SET_BOOKING_DATA = "SET_BOOKING_DATA";
 export const SET_TOTAL_ORDER = "SET_TOTAL_ORDER";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+
+export const USER_LOGOUT = "USER_LOGOUT";
+
+export const loginSuccess = (user) => ({
+  type: LOGIN_SUCCESS,
+  payload: user,
+});
+
+export const loginError = (error) => ({
+  type: LOGIN_ERROR,
+  payload: error,
+});
 
 export const addToCart = (item) => {
   return {
@@ -34,7 +47,15 @@ export const setBookingData = (data) => ({
   type: SET_BOOKING_DATA,
   payload: data,
 });
+
 export const setTotalOrder = (amount) => ({
   type: SET_TOTAL_ORDER,
   payload: amount,
 });
+
+export const setCurrentUser = (user) => {
+  return {
+    type: "SET_CURRENT_USER",
+    payload: user,
+  };
+};
