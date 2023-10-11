@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DatePicker } from "react-rainbow-components";
-import { Table, Button, Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { setBookingData } from "../Redux/action";
 import { useDispatch } from "react-redux";
@@ -27,7 +27,19 @@ const CalendarComponent = ({ id, tariffa }) => {
   const handleBooking = () => {
     if (!localStorage.getItem("userID")) {
       alert("Per favore, registrati o esegui il login per prenotare.");
-      navigate("/login");
+
+      // Salva lo stato corrente nel localStorage
+      localStorage.setItem(
+        "tempArrivalDate",
+        JSON.stringify(selectedArrivalDate)
+      );
+      localStorage.setItem(
+        "tempDepartureDate",
+        JSON.stringify(selectedDepartureDate)
+      );
+
+      // Reindirizza all'accesso con l'URL corrente come parametro
+      navigate(`/login?redirect=${window.location.pathname}`);
       return;
     }
 
@@ -71,6 +83,25 @@ const CalendarComponent = ({ id, tariffa }) => {
   };
 
   useEffect(() => {
+    console.log(localStorage.getItem("userID"));
+  }, []);
+
+  useEffect(() => {
+    const tempArrivalDate = JSON.parse(localStorage.getItem("tempArrivalDate"));
+    const tempDepartureDate = JSON.parse(
+      localStorage.getItem("tempDepartureDate")
+    );
+
+    if (tempArrivalDate) {
+      setSelectedArrivalDate(new Date(tempArrivalDate));
+      localStorage.removeItem("tempArrivalDate");
+    }
+
+    if (tempDepartureDate) {
+      setSelectedDepartureDate(new Date(tempDepartureDate));
+      localStorage.removeItem("tempDepartureDate");
+    }
+
     console.log(localStorage.getItem("userID"));
   }, []);
 

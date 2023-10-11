@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Row, Col, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation(); // Per ottenere i parametri URL
+
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
@@ -27,22 +31,21 @@ const Login = () => {
       });
 
       const data = await response.json();
-      console.log(data);
 
       if (response.ok) {
         const { token, idCliente, nome } = data;
-        console.log("Token ricevuto:", token);
-        console.log("ID del cliente ricevuto:", idCliente);
         localStorage.setItem("userID", idCliente);
         if (token) {
           localStorage.setItem("authToken", token);
-          console.log("Token salvato in localStorage");
-
-          if (idCliente) {
-            console.log("UserID salvato in localStorage e Redux:", idCliente);
-          }
 
           alert(`Benvenuto ${nome}! Accesso effettuato con successo.`);
+
+          const redirect = new URLSearchParams(location.search).get("redirect");
+          if (redirect) {
+            navigate(redirect); // Reindirizza all'URL fornito come parametro
+          } else {
+            navigate("/"); // O alla home se non c'è il parametro
+          }
         } else {
           alert("Token non ricevuto.");
         }
@@ -54,6 +57,7 @@ const Login = () => {
       alert("Errore durante l'accesso.");
     }
   };
+
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
