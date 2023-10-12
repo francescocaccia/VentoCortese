@@ -7,11 +7,11 @@ import {
   Card,
   ListGroup,
   Image,
-  Modal,
 } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../Redux/action";
 import { useNavigate } from "react-router-dom";
+import userIcon from "../userIcon.png";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -20,8 +20,8 @@ const UserProfile = () => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
   const userID = localStorage.getItem("userID");
-  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const navigate = useNavigate();
+
   const daysBetween = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
@@ -29,6 +29,7 @@ const UserProfile = () => {
     const days = differenceInMilliseconds / (1000 * 60 * 60 * 24);
     return Math.floor(days);
   };
+
   useEffect(() => {
     fetchUserDetails();
     fetchUserBookings();
@@ -48,17 +49,16 @@ const UserProfile = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Dati utente:", data); // Aggiungi questo console.log
-        setUserDetails(data); // Memorizza i dettagli dell'utente nello stato
+        setUserDetails(data);
+        console.log(data);
         dispatch(setCurrentUser(data.nome));
       } else {
         const errorMessage = await response.text();
-        throw new Error(
+        setError(
           `Errore nel recupero dei dettagli dell'utente: ${errorMessage}`
         );
       }
     } catch (error) {
-      console.error("Errore:", error);
       setError("Errore nel recupero dei dettagli dell'utente.");
     }
   };
@@ -66,16 +66,9 @@ const UserProfile = () => {
   const fetchUserBookings = async () => {
     const token = localStorage.getItem("authToken");
 
-    if (!token) {
-      setError(
-        "Token non trovato. Si prega di effettuare nuovamente l'accesso."
-      );
-      return;
-    }
-
     try {
       const response = await fetch(
-        `http://localhost:8080/prenotazioni/${userID}`,
+        `http://localhost:8080/prenotazioni/byCliente/${userID}`,
         {
           method: "GET",
           headers: {
@@ -87,55 +80,34 @@ const UserProfile = () => {
 
       if (response.ok) {
         const data = await response.json();
-
-        if (typeof data === "object" && data.idPrenotazione) {
-          setBookings([data]); // Metti l'oggetto in un array
-        } else {
-          console.error("Errore: la risposta dal server non è un array", data);
-        }
+        console.log(data);
+        setBookings(data);
       } else {
         const errorMessage = await response.text();
-        throw new Error(
-          `Errore nel recupero delle prenotazioni: ${errorMessage}`
-        );
+        setError(`Errore nel recupero delle prenotazioni: ${errorMessage}`);
       }
     } catch (error) {
-      console.error("Errore:", error);
       setError("Errore nel recupero delle prenotazioni.");
     }
   };
 
   const handleLogout = () => {
-    const confirmLogout = window.confirm(
-      "Sei sicuro di voler effettuare il logout?"
-    );
-    if (confirmLogout) {
+    if (window.confirm("Sei sicuro di voler effettuare il logout?")) {
       localStorage.removeItem("authToken");
       localStorage.removeItem("userID");
-      setError("Logout effettuato");
       dispatch({ type: "USER_LOGOUT" });
-      window.confirm("Logout effettuato con successo");
       navigate("/");
     }
   };
-
-  const confirmLogout = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userID");
-    setError("Logout effettuato");
-    setShowLogoutConfirm(false); // Chiudi il modal di conferma
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString("it-IT");
   };
-
   return (
     <Container className="mt-5 profile-container">
       <Row>
-        <Col md={4}>
+        <Col md={4} className="mt-5">
           <Card className="profile-card">
-            <Image
-              src="https://r.search.yahoo.com/_ylt=AwrijHw40x9lOH0b0YcdDQx.;_ylu=c2VjA3NyBHNsawNpbWcEb2lkAzQ5NTUyYzE0YzUwNDNjZjZlNzhhYTI2ODE3NjJhOWRkBGdwb3MDNARpdANiaW5n/RV=2/RE=1696613305/RO=11/RU=https%3a%2f%2fwww.pngitem.com%2fmiddle%2fixoTwm_circled-user-male-type-user-colorful-icon-png%2f/RK=2/RS=3Pt1Ew.fyh0jko4qlayMpy.eFdA-"
-              roundedCircle
-              className="profile-avatar"
-            />
+            <Image src={userIcon} roundedCircle className="profile-avatar" />
             <Card.Body>
               <Card.Title className="profile-name">
                 {userDetails.nome}
@@ -143,33 +115,80 @@ const UserProfile = () => {
               <Card.Text className="profile-email">
                 {userDetails.email}
               </Card.Text>
-              <Button variant="primary" onClick={() => setShowModal(true)}>
+              <Button
+                variant="primary"
+                onClick={() => setShowModal(true)}
+                className="w-100"
+              >
                 Modifica Profilo
               </Button>
-              <Button variant="danger" onClick={handleLogout} className="mt-2">
+              <Button
+                variant="danger"
+                onClick={handleLogout}
+                className="w-100 mt-2"
+              >
                 Logout
               </Button>
             </Card.Body>
           </Card>
         </Col>
-        <Col md={8}>
+        <Col md={8} className="mt-5">
           <Card className="bookings-card">
             <Card.Header className="bookings-header">
               Le tue prenotazioni
             </Card.Header>
             <ListGroup variant="flush">
-              {Array.isArray(bookings) &&
+              {bookings.length > 0 ? (
                 bookings.map((booking) => (
-                  <ListGroup.Item key={booking.id} className="booking-item">
-                    {booking.descrizione} - Dal {booking.dataInizio} al{" "}
-                    {booking.dataFine}(
-                    {daysBetween(booking.dataInizio, booking.dataFine)} giorni)
+                  <ListGroup.Item
+                    key={booking.idPrenotazione}
+                    className="booking-item"
+                  >
+                    <strong>Appartamento:</strong> {booking.appartamentino.nome}{" "}
+                    ({booking.appartamentino.descrizione})
+                    <div>
+                      <strong>Numero di Camere:</strong>{" "}
+                      {booking.appartamentino.numeroDiCamere}
+                    </div>
+                    <div>
+                      <strong>Capacità Massima:</strong>{" "}
+                      {booking.appartamentino.capienzaMassima} persone
+                    </div>
+                    <div>
+                      <strong>Tariffa:</strong> {booking.appartamentino.tariffa}
+                      € al giorno
+                    </div>
+                    <div>
+                      <strong>Periodo di Prenotazione:</strong> Dal{" "}
+                      {formatDate(booking.dataInizio)} al{" "}
+                      {formatDate(booking.dataFine)}(
+                      {daysBetween(booking.dataInizio, booking.dataFine)}{" "}
+                      giorni)
+                    </div>
+                    <div>
+                      <strong>Importo Totale:</strong> {booking.importoTotale}€
+                    </div>
                     <div className="booking-actions">
-                      <Button variant="outline-warning">Modifica</Button>
-                      <Button variant="outline-danger">Elimina</Button>
+                      <Button
+                        variant="outline-warning"
+                        className="d-inline-block"
+                      >
+                        Modifica
+                      </Button>
+                      <Button
+                        variant="outline-danger"
+                        className="d-inline-block ms-3"
+                      >
+                        Elimina
+                      </Button>
                     </div>
                   </ListGroup.Item>
-                ))}
+                ))
+              ) : (
+                <ListGroup.Item>
+                  Non hai ancora effettuato prenotazioni.
+                </ListGroup.Item>
+              )}
             </ListGroup>
           </Card>
         </Col>

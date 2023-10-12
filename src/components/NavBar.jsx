@@ -64,12 +64,11 @@ const Navbar = ({ cartItemCount, currentUser }) => {
         >
           <GiShoppingCart /> <span>{cartItemCount}</span>
         </Link>
-        {currentUser ? (
-          <Link to="/userProfile">
-            <FaUserTie />
-            {/* <p className="m-0">{renderedName}</p> */}
-          </Link>
-        ) : null}
+
+        <Link to="/userProfile">
+          <FaUserTie />
+          {/* <p className="m-0">{renderedName}</p> */}
+        </Link>
       </div>
     </nav>
   );
