@@ -43,7 +43,7 @@ const Navbar = ({ cartItemCount, currentUser }) => {
           to="/room"
           className={isActive("/room") ? "navbar__link--active" : ""}
         >
-          <GiMushroomHouse /> <span>Appartamentini</span>
+          <GiMushroomHouse /> <span>Alloggi</span>
         </Link>
         <Link
           to="/contacts"
@@ -65,7 +65,10 @@ const Navbar = ({ cartItemCount, currentUser }) => {
           <GiShoppingCart /> <span>{cartItemCount}</span>
         </Link>
 
-        <Link to="/userProfile">
+        <Link
+          to="/userProfile"
+          className={isActive("/userProfile") ? "navbar__link--active" : ""}
+        >
           <FaUserTie />
           {/* <p className="m-0">{renderedName}</p> */}
         </Link>

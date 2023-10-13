@@ -92,7 +92,8 @@ const DetailsRoom = ({ apartments, userID }) => {
                 {apartment.disponibilita ? "Disponibile" : "Non disponibile"}
               </Card.Text>
               <Card.Text>
-                <strong>Tariffa:</strong> {apartment.tariffa} €
+                <strong>Tariffa:</strong> {apartment.tariffa} €{" "}
+                <small>a notte</small>
               </Card.Text>
             </Card.Body>
             <Card.Footer>

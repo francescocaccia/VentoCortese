@@ -176,6 +176,11 @@ h5 {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Immagini contenenti appartamentini in home page */
+.rectangle-image {
+  max-height: 120px; /* puoi modificare questo valore secondo le tue esigenze */
+}
+
 /* FINEEEE */
 /*caroselli*/
 
