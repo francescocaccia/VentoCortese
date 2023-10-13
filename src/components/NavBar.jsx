@@ -22,6 +22,8 @@ const Navbar = ({ cartItemCount, currentUser }) => {
 
   const isActive = (path) => location.pathname === path;
 
+  // ...
+
   return (
     <nav className="navbar sticky-top ">
       <div className="navbar__logo">
@@ -36,38 +38,53 @@ const Navbar = ({ cartItemCount, currentUser }) => {
         </Link>
       </div>
       <div className="navbar__links fw-semibold">
-        <Link to="/" className={isActive("/") ? "navbar__link--active" : ""}>
+        <Link
+          to="/"
+          className={`d-flex flex-column align-items-center ${
+            isActive("/") ? "navbar__link--active" : ""
+          }`}
+        >
           <BiHomeHeart /> <span>Home</span>
         </Link>
         <Link
           to="/room"
-          className={isActive("/room") ? "navbar__link--active" : ""}
+          className={`d-flex flex-column align-items-center ${
+            isActive("/room") ? "navbar__link--active" : ""
+          }`}
         >
           <GiMushroomHouse /> <span>Alloggi</span>
         </Link>
         <Link
           to="/contacts"
-          className={isActive("/contacts") ? "navbar__link--active" : ""}
+          className={`d-flex flex-column align-items-center ${
+            isActive("/contacts") ? "navbar__link--active" : ""
+          }`}
         >
           <AiOutlinePhone />
           <span>contatti</span>
         </Link>
         <Link
           to="/shop"
-          className={isActive("/shop") ? "navbar__link--active" : ""}
+          className={`d-flex flex-column align-items-center ${
+            isActive("/shop") ? "navbar__link--active" : ""
+          }`}
         >
           <BsShop /> <span>shop</span>
         </Link>
         <Link
           to="/cart"
-          className={isActive("/cart") ? "navbar__link--active" : ""}
+          className={`d-flex flex-column align-items-center ${
+            isActive("/cart") ? "navbar__link--active" : ""
+          }`}
         >
           <GiShoppingCart /> <span>{cartItemCount}</span>
         </Link>
 
         <Link
           to="/userProfile"
-          className={isActive("/userProfile") ? "navbar__link--active" : ""}
+          className={`d-flex flex-column align-items-center ${
+            isActive("/userProfile") ? "navbar__link--active" : ""
+          }`}
         >
           <FaUserTie />
           {/* <p className="m-0">{renderedName}</p> */}
@@ -75,6 +92,8 @@ const Navbar = ({ cartItemCount, currentUser }) => {
       </div>
     </nav>
   );
+
+  // ...
 };
 
 const mapStateToProps = (state) => {
