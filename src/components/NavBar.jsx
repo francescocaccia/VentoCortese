@@ -87,6 +87,7 @@ const Navbar = ({ cartItemCount, currentUser }) => {
           }`}
         >
           <FaUserTie />
+          Profilo
           {/* <p className="m-0">{renderedName}</p> */}
         </Link>
       </div>
