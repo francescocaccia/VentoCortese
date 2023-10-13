@@ -21,14 +21,18 @@ const Reducer = (state = initialState, action) => {
         cart: [...state.cart, action.payload],
       };
     case "REMOVE_FROM_CART":
+      console.log("Stato corrente:", state.cart);
+      console.log("ID da rimuovere:", action.payload);
       const updatedCart = state.cart.filter(
         (item) => item.id !== action.payload
       );
+      console.log("Stato aggiornato:", updatedCart);
       return {
         ...state,
         cart: updatedCart,
       };
-    case SET_PRENOTAZIONI:
+
+    case "SET_PRENOTAZIONI":
       return { ...state, prenotazioni: action.payload };
     case FETCH_PRENOTAZIONI_ERROR:
       return { ...state, error: action.payload };

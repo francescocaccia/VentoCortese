@@ -55,11 +55,8 @@ const Cart = ({ cartItems, removeItem, setTotalAmount }) => {
                         "Sei sicuro di voler rimuovere questo articolo dal carrello?"
                       )
                     ) {
-                      if (
-                        cartItems.some((cartItem) => cartItem.id === item.id)
-                      ) {
-                        removeItem(item.id);
-                      }
+                      removeItem(item.id); // Qui stai passando solo l'ID
+                      console.log("ID dell'articolo da rimuovere:", item.id);
                     }
                   }}
                 >
@@ -91,7 +88,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeItem: (item) => dispatch(removeFromCart(item)), // Passa l'intero oggetto
+    removeItem: (itemId) => dispatch(removeFromCart(itemId)), // Passa solo l'ID dell'elemento
+
     setTotalAmount: (amount) => dispatch(setTotalAmount(amount)),
   };
 };
