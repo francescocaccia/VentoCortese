@@ -5,43 +5,46 @@ import pieroSara from "../Pierosara.png";
 import grotte from "../grotte.png";
 import logo from "../logoColleponi.png";
 import VideoSfondo from "../VideoSfondo.mp4";
-import { Button, Container } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import BoxLayout from "./BoxLayout";
 import Mapp from "./Mapp";
 const HomePage = () => {
   return (
     <>
-      <div className="background">
-        <video
-          autoPlay
-          loop
-          muted
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100vh",
-            objectFit: "cover",
-          }}
-        >
-          <source src={VideoSfondo} type="video/mp4" />
-        </video>
-        <div className="background__text size-5">
-          <div className="d-flex justify-content-center">
-            <img
-              src={logo}
-              alt="logo"
-              width={310}
-              height={310}
-              className="img-with-shadow"
-            />
+      <Row>
+        <Col xs={12} sm={12} md={12}>
+          <div className="background">
+            <video
+              autoPlay
+              loop
+              muted
+              style={{
+                position: "absolute",
+                width: "100%",
+                height: "100vh",
+                objectFit: "cover",
+              }}
+            >
+              <source src={VideoSfondo} type="video/mp4" />
+            </video>
+            <div className="background__text size-5">
+              <div className="d-flex justify-content-center">
+                <img
+                  src={logo}
+                  alt="logo"
+                  width={310}
+                  height={310}
+                  className="img-with-shadow"
+                />
+              </div>
+              <p className="fs-1">
+                Benvenuti a VentoCortese, il vostro rifugio ideale per una
+                vacanza rilassante immersa nella natura
+              </p>
+            </div>
           </div>
-          <p className="fs-1">
-            Benvenuti a VentoCortese, il vostro rifugio ideale per una vacanza
-            rilassante immersa nella natura
-          </p>
-        </div>
-      </div>
-
+        </Col>
+      </Row>
       <Container>
         <div>
           <h1 className="text-center mt-5 fs-1"> Vieni a conoscerci</h1>
