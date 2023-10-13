@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../Redux/action";
 import { useNavigate } from "react-router-dom";
 import userIcon from "../userIcon.png";
+import Login from "./Login";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -105,7 +106,10 @@ const UserProfile = () => {
   return (
     <Container className="mt-5 profile-container">
       <Row>
-        <Col md={4} className="mt-5">
+        <Col md={6}>
+          <Login />
+        </Col>
+        <Col md={6} className="mt-5">
           <Card className="profile-card">
             <Image src={userIcon} roundedCircle className="profile-avatar" />
             <Card.Body>
@@ -132,7 +136,7 @@ const UserProfile = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={8} className="mt-5">
+        <Col md={12} className="mt-5">
           <Card className="bookings-card">
             <Card.Header className="bookings-header">
               Le tue prenotazioni

@@ -3,6 +3,7 @@ import { Button, Form, Container, Row, Col, Card } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loginSuccess, setCurrentUser } from "../Redux/action";
+import { RiLoginCircleLine } from "react-icons/ri";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -97,7 +98,8 @@ const Login = () => {
                 </Form.Group>
                 <div className="text-center fs-5 mt-2 mb-3">
                   <Link to="/register" className="text-decoration-none">
-                    se non sei ancora registrato clicca qui
+                    <RiLoginCircleLine /> se non sei ancora registrato clicca
+                    qui
                   </Link>
                 </div>
                 <Button variant="primary" type="submit">

@@ -44,7 +44,7 @@ const Navbar = ({ cartItemCount, currentUser }) => {
             isActive("/") ? "navbar__link--active" : ""
           }`}
         >
-          <BiHomeHeart /> <span>Home</span>
+          <BiHomeHeart /> <span>home</span>
         </Link>
         <Link
           to="/room"
@@ -52,7 +52,7 @@ const Navbar = ({ cartItemCount, currentUser }) => {
             isActive("/room") ? "navbar__link--active" : ""
           }`}
         >
-          <GiMushroomHouse /> <span>Alloggi</span>
+          <GiMushroomHouse /> <span>alloggi</span>
         </Link>
         <Link
           to="/contacts"
@@ -87,8 +87,7 @@ const Navbar = ({ cartItemCount, currentUser }) => {
           }`}
         >
           <FaUserTie />
-          Profilo
-          {/* <p className="m-0">{renderedName}</p> */}
+          <span>{currentUser ? currentUser : "login"}</span>
         </Link>
       </div>
     </nav>
