@@ -358,24 +358,40 @@ h5 {
 /* Shop */
 
 /* Card */
-/* .card {
-  transition: transform 0.3s;
+/* Styling base per la card dello shop */
+.card-title h3,
+.card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.card:hover {
-  transform: scale(1.1);
+.uniqueShopCard {
+  width: 300px;
+  height: 450px; /* Ad esempio, puoi regolare questa dimensione come desideri */
+  transition: transform 0.3s;
+  overflow: hidden; /* Continua a nascondere il contenuto in eccesso */
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
 }
-.card-img {
-  height: 130px;
+
+.uniqueShopCard .shop-card-img {
+  width: 100%;
+  height: 200px;
   object-fit: cover;
 }
 
-.card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-} */
-
+.uniqueShopCard .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.uniqueShopCard:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.9);
+}
 /* icone */
 /* Stile di base per le icone */
 .contact-icon {
@@ -387,7 +403,7 @@ h5 {
   color: rgb(207, 185, 160); /* Cambia il colore durante l'hover */
 }
 
-/* Carrello / Cart */
+/* Carrello / Cart e Shop*/
 
 /* Contenitore principale del carrello */
 .cart {

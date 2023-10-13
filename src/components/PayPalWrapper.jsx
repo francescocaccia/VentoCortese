@@ -10,9 +10,7 @@ const PayPalWrapper = ({ total, onSuccess }) => {
         <p className="paypal-description">
           Completa il tuo acquisto in tutta sicurezza con PayPal.
         </p>
-        <h5 className="mb-5">
-          Il totale della prenotazione ammonta a: {total}
-        </h5>
+        <h5 className="mb-5">Il totale ammonta a: {total} €</h5>
         <PayPalButton amount={total} onSuccess={onSuccess} />
       </div>
     </>

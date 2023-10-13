@@ -4,6 +4,7 @@ import "aos/dist/aos.css";
 import { FaTree, FaSeedling } from "react-icons/fa";
 import { GiOlive, GiDandelionFlower } from "react-icons/gi";
 import { IoIosFlower } from "react-icons/io";
+
 function BoxLayout() {
   const [appartamentini, setAppartamentini] = useState([]);
   const colorClasses = ["color-1", "color-2", "color-3", "color-4", "color-5"];

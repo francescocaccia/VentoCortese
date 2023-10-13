@@ -24,6 +24,7 @@ const mieleries = [
     rating: 4.7,
     imageUrl:
       "https://www.fattoriascalabrini.it/167-large_default/kit-regalo-miele-2-vasetti-gr-110.jpg",
+    prezzo: 8.5,
   },
   {
     name: "Miele Fiorito",
@@ -33,6 +34,7 @@ const mieleries = [
     rating: 4.5,
     imageUrl:
       "https://www.gustosesapores.com/wp-content/uploads/miele-anedda-asfodelo-1.png",
+    prezzo: 7.0,
   },
   {
     name: "Miele delle Alpi",
@@ -42,6 +44,7 @@ const mieleries = [
     rating: 4.8,
     imageUrl:
       "https://shop.negozioleggero.it/5842-large_default/miele-di-tiglio.jpg",
+    prezzo: 9.5,
   },
   {
     name: "Miele d'Arancia",
@@ -50,6 +53,7 @@ const mieleries = [
     rating: 4.6,
     imageUrl:
       "https://rauartedolciariashop.com/wp-content/uploads/2021/07/miele-asfodelo.jpg",
+    prezzo: 8.0,
   },
   {
     name: "Miele delle Colline Verdi",
@@ -59,6 +63,7 @@ const mieleries = [
     rating: 4.9,
     imageUrl:
       "https://www.prodottitipicivalledaosta.it/2286-large_default/miele-di-millefiori-100-italiano-750-g.jpg",
+    prezzo: 10.0,
   },
   {
     name: "Miele del Bosco",
@@ -67,6 +72,7 @@ const mieleries = [
     rating: 4.7,
     imageUrl:
       "https://www.agrigal.com/negozio-bio-online/2242-large_default/api-experience-box-limited-edition.jpg",
+    prezzo: 11.5,
   },
 ];
 
@@ -131,17 +137,23 @@ const Shop = ({ addToCart }) => {
         <Row className="my-4">
           {mieleries.map((mielery, index) => (
             <Col md={3} key={index} onClick={() => handleCardClick(mielery)}>
-              <Card className="mb-3" data-aos="zoom-in-up">
+              <Card
+                className="mb-3 shop-card uniqueShopCard"
+                data-aos="zoom-in-up"
+              >
                 <Card.Img
                   variant="top"
                   src={mielery.imageUrl}
-                  className="card-img"
+                  className="shop-card-img"
                 />
                 <Card.Body>
                   <Card.Title>
                     <h3>{mielery.name}</h3>
                   </Card.Title>
-                  <Card.Text>{mielery.location}</Card.Text>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span>{mielery.location}</span>
+                    <span>{mielery.prezzo}€</span>
+                  </div>
                   <Card.Text>{mielery.rating}</Card.Text>
                 </Card.Body>
               </Card>
@@ -166,9 +178,13 @@ const Shop = ({ addToCart }) => {
                 <span className="fs-4 text-info">Description:</span>{" "}
                 {currentMielery.description}
               </p>
-              <p>
-                <span className="fs-4 text-info">Rating:</span>{" "}
-                {currentMielery.rating}
+              <p className="d-flex justify-content-between align-items-center">
+                <span className="fs-4 text-info">
+                  Rating: {currentMielery.rating}
+                </span>{" "}
+                <span className="fs-4 text-info">
+                  Prezzo: {currentMielery.prezzo}€
+                </span>{" "}
               </p>
               <Image src={currentMielery.imageUrl} fluid />
             </>

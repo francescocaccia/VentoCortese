@@ -6,8 +6,8 @@ export const SET_BOOKING_DATA = "SET_BOOKING_DATA";
 export const SET_TOTAL_ORDER = "SET_TOTAL_ORDER";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
-
 export const USER_LOGOUT = "USER_LOGOUT";
+export const SET_TOTAL_AMOUNT = " SET_TOTAL_AMOUNT";
 
 export const loginSuccess = (user) => ({
   type: LOGIN_SUCCESS,
@@ -21,14 +21,14 @@ export const loginError = (error) => ({
 
 export const addToCart = (item) => {
   return {
-    type: "ADD_TO_CART",
+    type: ADD_TO_CART,
     payload: item,
   };
 };
 
 export const removeFromCart = (itemId) => {
   return {
-    type: "REMOVE_FROM_CART",
+    type: REMOVE_FROM_CART,
     payload: itemId,
   };
 };
@@ -59,3 +59,8 @@ export const setCurrentUser = (user) => {
     payload: user,
   };
 };
+
+export const setTotalAmount = (amount) => ({
+  type: "SET_TOTAL_AMOUNT",
+  payload: amount,
+});

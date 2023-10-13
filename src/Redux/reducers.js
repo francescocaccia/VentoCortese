@@ -22,7 +22,7 @@ const Reducer = (state = initialState, action) => {
       };
     case "REMOVE_FROM_CART":
       const updatedCart = state.cart.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.id !== action.payload
       );
       return {
         ...state,
@@ -47,6 +47,12 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
+      };
+
+    case "SET_TOTAL_AMOUNT":
+      return {
+        ...state,
+        totalAmount: action.payload,
       };
     default:
       return state;
