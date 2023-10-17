@@ -68,29 +68,10 @@ const Room = () => {
         </div>
       </div>
 
-      <div className="price-list mb-5">
-        <h3>
-          🌳 Ulivo: Lasciati avvolgere dalla serenità e dal fascino millenario
-          dell'ulivo. Una stanza che ricorda le dolci colline e la tradizione
-          del nostro territorio. <br />
-          🌲 Pino: Respira l'aria fresca e rigenerante delle montagne, avvolto
-          dal profumo inconfondibile del pino. Un tuffo nel cuore verde
-          dell'Appennino.
-          <br /> 🍃 Menta: Una boccata di freschezza ti accoglie in questa
-          stanza, ispirata alla vivacità e alla spensieratezza della menta.{" "}
-          <br />
-          🌱 Rosmarino: Lasciati stimolare dai profumi intensi del rosmarino,
-          simbolo della nostra terra e del Mediterraneo. Una stanza che
-          risveglia i sensi e rinvigorisce lo spirito. <br />
-          🌼 Ginestra: Luminosa e accogliente come i fiori gialli della ginestra
-          che punteggiano le nostre colline. Un simbolo di calore e di gioia,
-          perfetto per completare la tua oasi naturale.
-        </h3>
-      </div>
       <Container>
-        <Row className="custom-card-row">
+        <Row className="custom-card-row justify-content-center">
           {apartments.map((apartment, index) => (
-            <Col key={index} className="custom-card-col">
+            <Col md={3} key={index} className="custom-card-col ">
               <Link
                 to={`/room/${apartment.idAppartamentino}`}
                 className="text-decoration-none text-dark"

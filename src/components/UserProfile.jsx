@@ -103,12 +103,15 @@ const UserProfile = () => {
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("it-IT");
   };
+
+  const isUserLoggedIn = () => {
+    return !!localStorage.getItem("authToken");
+  };
+
   return (
     <Container className="mt-5 profile-container">
       <Row>
-        <Col md={6}>
-          <Login />
-        </Col>
+        <Col md={6}>{!isUserLoggedIn() && <Login />}</Col>
         <Col md={6} className="mt-5">
           <Card className="profile-card">
             <Image src={userIcon} roundedCircle className="profile-avatar" />

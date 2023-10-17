@@ -8,100 +8,51 @@ import {
   Modal,
   Button,
 } from "react-bootstrap";
-import logo from "../logoColleponi.png";
 import { GiShoppingCart } from "react-icons/gi";
 import { IoIosClose } from "react-icons/io";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../Redux/action";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import logo from "../logoColleponi.png";
 
-const mieleries = [
-  {
-    name: "Miele Dolcezza",
-    location: "Toscana",
-    description: "Un'azienda apistica specializzata in miele biologico e puro.",
-    rating: 4.7,
-    imageUrl:
-      "https://www.fattoriascalabrini.it/167-large_default/kit-regalo-miele-2-vasetti-gr-110.jpg",
-    prezzo: 8.5,
-  },
-  {
-    name: "Miele Fiorito",
-    location: "Piemonte",
-    description:
-      "Produttori di miele aromatico e delizioso, direttamente dalle colline piemontesi.",
-    rating: 4.5,
-    imageUrl:
-      "https://www.gustosesapores.com/wp-content/uploads/miele-anedda-asfodelo-1.png",
-    prezzo: 7.0,
-  },
-  {
-    name: "Miele delle Alpi",
-    location: "Lombardia",
-    description:
-      "Scelto tra i migliori alpeggi delle Alpi, questo miele offre un sapore unico.",
-    rating: 4.8,
-    imageUrl:
-      "https://shop.negozioleggero.it/5842-large_default/miele-di-tiglio.jpg",
-    prezzo: 9.5,
-  },
-  {
-    name: "Miele d'Arancia",
-    location: "Sicilia",
-    description: "Un'esplosione di gusto con il miele d'arancia della Sicilia.",
-    rating: 4.6,
-    imageUrl:
-      "https://rauartedolciariashop.com/wp-content/uploads/2021/07/miele-asfodelo.jpg",
-    prezzo: 8.0,
-  },
-  {
-    name: "Miele delle Colline Verdi",
-    location: "Umbria",
-    description:
-      "Il miele perfetto per gli amanti della natura, raccolto tra le colline umbre.",
-    rating: 4.9,
-    imageUrl:
-      "https://www.prodottitipicivalledaosta.it/2286-large_default/miele-di-millefiori-100-italiano-750-g.jpg",
-    prezzo: 10.0,
-  },
-  {
-    name: "Miele del Bosco",
-    location: "Trentino-Alto Adige",
-    description: "Una delizia selvatica, raccolta nei boschi delle Dolomiti.",
-    rating: 4.7,
-    imageUrl:
-      "https://www.agrigal.com/negozio-bio-online/2242-large_default/api-experience-box-limited-edition.jpg",
-    prezzo: 11.5,
-  },
-];
-
-const Shop = ({ addToCart }) => {
+const Shop = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentMielery, setCurrentMielery] = useState(null);
+  const [mieleries, setMieleries] = useState([]);
+  const dispatch = useDispatch();
 
   const handleCardClick = (mielery) => {
     setCurrentMielery(mielery);
     setShowModal(true);
   };
 
-  const [cartItems, setCartItems] = useState([]);
-
   const handleCloseModal = () => {
     setCurrentMielery(null);
     setShowModal(false);
   };
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    alert("Prodotto aggiunto correttamente al carrello");
+  };
+
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Durata dell'animazione in millisecondi
+      duration: 1000,
     });
+
+    fetch("http://localhost:8080/mieleries/all")
+      .then((response) => response.json())
+      .then((data) => setMieleries(data))
+      .catch((error) => console.error("Errore nella richiesta:", error));
   }, []);
+
   return (
     <>
       <Container>
         <h2 className="text-center my-4">Il nostro shop...</h2>
         <h3 className="mb-3">Il nostro Miele...</h3>
-
         <Row>
           <Col md={5}>
             <Image
@@ -135,8 +86,12 @@ const Shop = ({ addToCart }) => {
           esplorare il mondo del miele come mai prima d'ora!
         </p>
         <Row className="my-4">
-          {mieleries.map((mielery, index) => (
-            <Col md={3} key={index} onClick={() => handleCardClick(mielery)}>
+          {mieleries.map((mielery) => (
+            <Col
+              md={3}
+              key={mielery.id}
+              onClick={() => handleCardClick(mielery)}
+            >
               <Card
                 className="mb-3 shop-card uniqueShopCard"
                 data-aos="zoom-in-up"
@@ -196,11 +151,7 @@ const Shop = ({ addToCart }) => {
           </Button>
           <Button
             variant="info"
-            onClick={() => {
-              addToCart(currentMielery);
-              setCartItems([...cartItems, currentMielery]);
-              alert("Prodotto aggiunto correttamente al carrello");
-            }}
+            onClick={() => handleAddToCart(currentMielery)}
           >
             <GiShoppingCart /> Agg. al carrello
           </Button>
@@ -210,4 +161,4 @@ const Shop = ({ addToCart }) => {
   );
 };
 
-export default connect(null, { addToCart })(Shop);
+export default Shop;

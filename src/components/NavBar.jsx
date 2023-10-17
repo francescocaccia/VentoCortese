@@ -11,18 +11,7 @@ import { FaUserTie } from "react-icons/fa";
 const Navbar = ({ cartItemCount, currentUser }) => {
   const location = useLocation();
 
-  // Funzione per troncare basato sul numero di caratteri
-  // function truncateToNChars(str, n = 3) {
-  //   if (str && str.length <= n) return str;
-  //   return str ? str.substring(0, n) + "..." : "";
-  // }
-
-  // const renderedName = truncateToNChars(currentUser);
-  // console.log("Originale:", currentUser, "Troncato:", renderedName);
-
   const isActive = (path) => location.pathname === path;
-
-  // ...
 
   return (
     <nav className="navbar sticky-top ">
