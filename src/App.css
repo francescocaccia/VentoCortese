@@ -589,3 +589,9 @@ h5 {
   display: flex;
   gap: 10px;
 }
+
+/* Star Rating nel componete shop per le stelle di valutazione delle card */
+
+.star-icon {
+  color: #daa520;
+}

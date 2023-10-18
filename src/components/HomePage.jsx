@@ -109,28 +109,33 @@ const HomePage = () => {
         <Carousel.Item className="illustrative-carousel-item">
           <img className="d-block w-100" src={genga} alt="First slide" />
           <Carousel.Caption className="illustrative-carousel-caption">
-            <Button className="illustrative-carousel-button">
+            {/* <Button className="illustrative-carousel-button">
               <h3>Prima diapositiva</h3>
-            </Button>
-            <p>Descrizione della prima diapositiva.</p>
+            </Button> */}
+            <p>
+              Fai visita a i Borghi Più Belli D'Italia a pochi KM intorno a noi
+            </p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={pieroSara} alt="second slide" />
           <Carousel.Caption>
-            <Button className="text-decoration-none">
+            {/* <Button className="text-decoration-none">
               <h3>Prima diapositiva</h3>
-            </Button>
-            <p>Descrizione della seconda diapositiva.</p>
+            </Button> */}
+            <p>
+              Deliziati con i piatti tipici del posto, nel leggendario paese di
+              PieroSara
+            </p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={grotte} alt="First slide" />
           <Carousel.Caption>
-            <Button>
+            {/* <Button>
               <h3>Prima diapositiva</h3>
-            </Button>
-            <p>Descrizione della terza diapositiva.</p>
+            </Button> */}
+            <p>Vieni a visitare le suggestive Grotte di Frasassi</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

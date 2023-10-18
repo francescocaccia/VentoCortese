@@ -15,6 +15,7 @@ import { addToCart } from "../Redux/action";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import logo from "../logoColleponi.png";
+import Rating from "./Rating";
 
 const Shop = () => {
   const [showModal, setShowModal] = useState(false);
@@ -109,7 +110,9 @@ const Shop = () => {
                     <span>{mielery.location}</span>
                     <span>{mielery.prezzo}€</span>
                   </div>
-                  <Card.Text>{mielery.rating}</Card.Text>
+                  <Card.Text>
+                    <Rating value={mielery.rating} />
+                  </Card.Text>
                 </Card.Body>
               </Card>
             </Col>
