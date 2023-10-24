@@ -124,6 +124,44 @@ const UserProfile = () => {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
+    const fetchAppartamentoBookings = async (idAppartamentino) => {
+      const token = localStorage.getItem("authToken");
+      try {
+        const response = await fetch(
+          `http://localhost:8080/prenotazioni/byAppartamentino/${idAppartamentino}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          return data;
+        } else {
+          const errorMessage = await response.text();
+          console.error(
+            `Errore nel recupero delle prenotazioni: ${errorMessage}`
+          );
+          return [];
+        }
+      } catch (error) {
+        console.error("Errore nel recupero delle prenotazioni.");
+        return [];
+      }
+    };
+
+    const isDateOverlapping = (existingBookings, newStartDate, newEndDate) => {
+      return existingBookings.some(
+        (existingBooking) =>
+          newStartDate <= existingBooking.dataFine &&
+          newEndDate >= existingBooking.dataInizio
+      );
+    };
+
     const handleSubmit = async () => {
       const formatDateToCustom = (dateString) => {
         const date = new Date(dateString);
@@ -135,6 +173,24 @@ const UserProfile = () => {
       };
 
       const token = localStorage.getItem("authToken");
+
+      // Fetch existing bookings for the apartment
+      const existingBookings = await fetchAppartamentoBookings(
+        formData.idAppartamentino
+      );
+
+      // Check if the new booking dates are overlapping with any existing bookings
+      if (
+        isDateOverlapping(
+          existingBookings,
+          formatDateToCustom(formData.dataInizio),
+          formatDateToCustom(formData.dataFine)
+        )
+      ) {
+        window.alert("L'appartamento è già prenotato per queste date.");
+        return;
+      }
+
       const updatedBooking = {
         dataInizio: formatDateToCustom(formData.dataInizio),
         dataFine: formatDateToCustom(formData.dataFine),
